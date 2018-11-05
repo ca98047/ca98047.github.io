@@ -30,11 +30,18 @@ cover : /assets/posts/1.jpg
 > 스프링에서 객체를 생성하고 조립하는 컨테이너로, 컨테이를 통해 생성된 객체를 빈(Bean)이라고 부른다.  
 
 ![ioc container](/assets/posts/ioc container.png)  
-  
+
 
 ### 개발환경 구축
 #### 1.JDK(Java Development Kit), 이클립스 설치   
-![jdk](/assets/posts/jdk구조.png)
+![jdk](/assets/posts/jdk구조.png)  
+ * JDK : Java **개발**을 위한 도구  
+ * JRE : Java 프로그램 **실행**을 위한 도구  
+
+ >JDK = JRE + Development Tool (```java```, ```javac```)  
+ >JRE = JVM + Library Classes  
+
+
 #### 2. maven 프로젝트 생성
 ![maven](/assets/posts/maven생성.png)
  * **group-id** : 프로젝트 식별 id

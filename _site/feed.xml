@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Nov 2018 00:02:46 +0900</pubDate>
-    <lastBuildDate>Tue, 06 Nov 2018 00:02:46 +0900</lastBuildDate>
+    <pubDate>Tue, 06 Nov 2018 08:19:02 +0900</pubDate>
+    <lastBuildDate>Tue, 06 Nov 2018 08:19:02 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -50,6 +50,16 @@
 &lt;h3 id=&quot;개발환경-구축&quot;&gt;개발환경 구축&lt;/h3&gt;
 &lt;h4 id=&quot;1jdkjava-development-kit-이클립스-설치&quot;&gt;1.JDK(Java Development Kit), 이클립스 설치&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/posts/jdk구조.png&quot; alt=&quot;jdk&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;JDK : Java &lt;strong&gt;개발&lt;/strong&gt;을 위한 도구&lt;/li&gt;
+  &lt;li&gt;JRE : Java 프로그램 &lt;strong&gt;실행&lt;/strong&gt;을 위한 도구&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;JDK = JRE + Development Tool (&lt;code class=&quot;highlighter-rouge&quot;&gt;java&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;)&lt;br /&gt;
+JRE = JVM + Library Classes&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;h4 id=&quot;2-maven-프로젝트-생성&quot;&gt;2. maven 프로젝트 생성&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/posts/maven생성.png&quot; alt=&quot;maven&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
