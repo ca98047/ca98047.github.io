@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 05 Nov 2018 19:28:30 +0900</pubDate>
-    <lastBuildDate>Mon, 05 Nov 2018 19:28:30 +0900</lastBuildDate>
+    <pubDate>Tue, 06 Nov 2018 00:02:46 +0900</pubDate>
+    <lastBuildDate>Tue, 06 Nov 2018 00:02:46 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -40,10 +40,12 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;4-스프링-컨테이너-ioc&quot;&gt;4. 스프링 컨테이너 (IOC)&lt;/h4&gt;
+&lt;h4 id=&quot;4-스프링-컨테이너--ioc---inversion-of-control-&quot;&gt;4. 스프링 컨테이너 ( IOC - Inversion Of Control )&lt;/h4&gt;
 &lt;blockquote&gt;
   &lt;p&gt;스프링에서 객체를 생성하고 조립하는 컨테이너로, 컨테이를 통해 생성된 객체를 빈(Bean)이라고 부른다.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/ioc container.png&quot; alt=&quot;ioc container&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;개발환경-구축&quot;&gt;개발환경 구축&lt;/h3&gt;
 &lt;h4 id=&quot;1jdkjava-development-kit-이클립스-설치&quot;&gt;1.JDK(Java Development Kit), 이클립스 설치&lt;/h4&gt;
