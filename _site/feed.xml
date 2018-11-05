@@ -6,9 +6,77 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 04 Nov 2018 19:16:11 +0900</pubDate>
-    <lastBuildDate>Sun, 04 Nov 2018 19:16:11 +0900</lastBuildDate>
+    <pubDate>Mon, 05 Nov 2018 19:28:30 +0900</pubDate>
+    <lastBuildDate>Mon, 05 Nov 2018 19:28:30 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
+    
+      <item>
+        <title>Spring 개요</title>
+        <description>&lt;h3 id=&quot;spring-framework-개요&quot;&gt;Spring Framework 개요&lt;/h3&gt;
+
+&lt;h4 id=&quot;1-정의&quot;&gt;1. 정의&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크&lt;br /&gt;
+&lt;strong&gt;Framework&lt;/strong&gt; : 틀, 즉 개발자가 개발(기능구현)에만 집중할 수 있도록 틀을 만들어줌&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;2-spring-framework-주요기능&quot;&gt;2. Spring Framework 주요기능&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;DI&lt;/strong&gt; : 의존성 주입 (Dependency Injection)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;AOP&lt;/strong&gt; : 관점지향 프로그래밍 (Aspect Oriented Programming)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;MVC&lt;/strong&gt; : Model, View, Controller를 분리&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;3-스프링-프레임워크에서-제공하고-있는-모듈&quot;&gt;3. 스프링 프레임워크에서 제공하고 있는 모듈&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;spring-core&lt;/strong&gt; : 스프링 핵심인 DI 와 IOC를 제공&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;spring-aop&lt;/strong&gt; : AOP 구현기능 제공&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;spring-jdbc&lt;/strong&gt; : jdbc를 쉽게 다룰 수 있는 기능 제공&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;spring-tx&lt;/strong&gt; : 스프링에서 제공하는 트랜젝션 관련기능 제공&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;spring-webmvc&lt;/strong&gt; : spring에서 제공하는 Controller, View를 이용한 스프링 MVC 기능구현 제공
+    &lt;blockquote&gt;
+      &lt;p&gt;모듈에 대한 의존 설정은 XML파일을 이용하여 개발자가 직접 관리가 가능하다. (maven 프로젝트)&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;4-스프링-컨테이너-ioc&quot;&gt;4. 스프링 컨테이너 (IOC)&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;스프링에서 객체를 생성하고 조립하는 컨테이너로, 컨테이를 통해 생성된 객체를 빈(Bean)이라고 부른다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;개발환경-구축&quot;&gt;개발환경 구축&lt;/h3&gt;
+&lt;h4 id=&quot;1jdkjava-development-kit-이클립스-설치&quot;&gt;1.JDK(Java Development Kit), 이클립스 설치&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/jdk구조.png&quot; alt=&quot;jdk&quot; /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;2-maven-프로젝트-생성&quot;&gt;2. maven 프로젝트 생성&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/maven생성.png&quot; alt=&quot;maven&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;group-id&lt;/strong&gt; : 프로젝트 식별 id&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;artifact-id&lt;/strong&gt; : 버젼정보를 생략한 jar 파일의 이름&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;version&lt;/strong&gt; : 숫자와 점으로 이루어진 일반적인 버젼형태 (&lt;code class=&quot;highlighter-rouge&quot;&gt;1.0&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;1.0.1&lt;/code&gt; …)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;3-pomxml-작성&quot;&gt;3. pom.xml 작성&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/posts/pom구조.png&quot; alt=&quot;pom.xml구조&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;4-maven-프로젝트-경로&quot;&gt;4. maven 프로젝트 경로&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;src/main
+    &lt;ul&gt;
+      &lt;li&gt;java : 실제 개발할 기능 구현&lt;/li&gt;
+      &lt;li&gt;resource : 보조적인 파일, build 및 자원 관련 (&lt;code class=&quot;highlighter-rouge&quot;&gt;xml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;properties&lt;/code&gt;)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 06 Nov 2015 00:56:59 +0900</pubDate>
+        <link>http://localhost:4000/spring/2015/11/06/spring-%EA%B0%9C%EC%9A%94.html</link>
+        <guid isPermaLink="true">http://localhost:4000/spring/2015/11/06/spring-%EA%B0%9C%EC%9A%94.html</guid>
+        
+        
+        <category>Spring</category>
+        
+      </item>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -77,114 +145,6 @@ function demo(string, times) {
         
         
         <category>Jekyll</category>
-        
-      </item>
-    
-      <item>
-        <title>Dummy Post 6</title>
-        <description>&lt;p&gt;This is just a dummy post. Lorem ipsum and all the rest.&lt;/p&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 18 Apr 2015 17:43:59 +0900</pubDate>
-        <link>http://localhost:4000/dummy/2015/04/18/dummy6.html</link>
-        <guid isPermaLink="true">http://localhost:4000/dummy/2015/04/18/dummy6.html</guid>
-        
-        <category>lorem</category>
-        
-        <category>ipsum</category>
-        
-        
-        <category>Dummy</category>
-        
-      </item>
-    
-      <item>
-        <title>Dummy Post 5</title>
-        <description>&lt;p&gt;This is just a dummy post. Lorem ipsum and all the rest.&lt;/p&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 18 Apr 2015 17:43:59 +0900</pubDate>
-        <link>http://localhost:4000/dummy/2015/04/18/dummy5.html</link>
-        <guid isPermaLink="true">http://localhost:4000/dummy/2015/04/18/dummy5.html</guid>
-        
-        <category>lorem</category>
-        
-        
-        <category>Dummy</category>
-        
-      </item>
-    
-      <item>
-        <title>Dummy Post 4</title>
-        <description>&lt;p&gt;This is just a dummy post. Lorem ipsum and all the rest.&lt;/p&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 18 Apr 2015 17:43:59 +0900</pubDate>
-        <link>http://localhost:4000/dummy/2015/04/18/dummy4.html</link>
-        <guid isPermaLink="true">http://localhost:4000/dummy/2015/04/18/dummy4.html</guid>
-        
-        <category>ipsum</category>
-        
-        
-        <category>Dummy</category>
-        
-      </item>
-    
-      <item>
-        <title>Dummy Post 3</title>
-        <description>&lt;p&gt;This is just a dummy post. Lorem ipsum and all the rest.&lt;/p&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 18 Apr 2015 17:43:59 +0900</pubDate>
-        <link>http://localhost:4000/dummy/2015/04/18/dummy3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/dummy/2015/04/18/dummy3.html</guid>
-        
-        
-        <category>Dummy</category>
-        
-      </item>
-    
-      <item>
-        <title>Dummy Post 2</title>
-        <description>&lt;p&gt;This is just a dummy post. Lorem ipsum and all the rest.&lt;/p&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 18 Apr 2015 17:43:59 +0900</pubDate>
-        <link>http://localhost:4000/dummy/2015/04/18/dummy2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/dummy/2015/04/18/dummy2.html</guid>
-        
-        
-        <category>Dummy</category>
         
       </item>
     
