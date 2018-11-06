@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Dummy Post</title>
-  <meta name="description" content="This is just a dummy post. Lorem ipsum and all the rest.">
+  <title>Spring 개요</title>
+  <meta name="description" content="Spring Framework 개요">
   
   <meta name="author" content="Ben Centra">
   <meta name="copyright" content="&copy; Ben Centra 2018">
@@ -41,12 +41,12 @@
 
   
   <!-- Facebook OGP cards -->
-  <meta property="og:description" content="This is just a dummy post. Lorem ipsum and all the rest." />
+  <meta property="og:description" content="Spring Framework 개요" />
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="Centrarium" />
-  <meta property="og:title" content="Dummy Post" />
+  <meta property="og:title" content="Spring 개요" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="http://localhost:4000/assets/logo.png" />
+  <meta property="og:image" content="http://localhost:4000/assets/posts/1.jpg" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="612" />
   <meta property="og:image:height" content="605" />
@@ -55,9 +55,9 @@
   
   <!-- Twitter: card tags -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Dummy Post">
-  <meta name="twitter:description" content="This is just a dummy post. Lorem ipsum and all the rest.">
-  <meta name="twitter:image" content="http://localhost:4000/assets/logo.png">
+  <meta name="twitter:title" content="Spring 개요">
+  <meta name="twitter:description" content="Spring Framework 개요">
+  <meta name="twitter:image" content="http://localhost:4000/assets/posts/1.jpg">
   <meta name="twitter:url" content="http://localhost:4000">
   
 
@@ -65,7 +65,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/dummy/2015/04/18/dummy.html">
+  <link rel="canonical" href="http://localhost:4000/spring/2018/11/06/spring-%EA%B0%9C%EC%9A%94.html">
   <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml" />
 </head>
 
@@ -140,43 +140,132 @@
     <div class="page-content">
         <div class="post">
 
-<div class="post-header-container " >
-  <div class="scrim ">
+<div class="post-header-container has-cover" style="background-image: url(/assets/posts/1.jpg);">
+  <div class="scrim has-cover">
     <header class="post-header">
-      <h1 class="title">Dummy Post</h1>
-      <p class="info">by <strong>Ben Centra</strong></p>
+      <h1 class="title">Spring 개요</h1>
+      <p class="info">by <strong>jinow</strong></p>
     </header>
   </div>
 </div>
 
 <div class="wrapper">
 
- <span class="page-divider">
-  <span class="one"></span>
-  <span class="two"></span>
-</span>
- 
+
 
 <section class="post-meta">
-  <div class="post-date">April 18, 2015</div>
+  <div class="post-date">November 6, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/Dummy">Dummy</a>
+    <a href="/category/Spring">Spring</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>This is just a dummy post. Lorem ipsum and all the rest.</p>
+  <h3 id="spring-framework-개요">Spring Framework 개요</h3>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h4 id="1-정의">1. 정의</h4>
+<blockquote>
+  <p>자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크<br />
+<strong>Framework</strong> : 틀, 즉 개발자가 개발(기능구현)에만 집중할 수 있도록 틀을 만들어줌</p>
+</blockquote>
+
+<h4 id="2-spring-framework-주요기능">2. Spring Framework 주요기능</h4>
+<ul>
+  <li><strong>DI</strong> : 의존성 주입 (Dependency Injection)</li>
+  <li><strong>AOP</strong> : 관점지향 프로그래밍 (Aspect Oriented Programming)</li>
+  <li><strong>MVC</strong> : Model, View, Controller를 분리</li>
+</ul>
+
+<h4 id="3-스프링-프레임워크에서-제공하고-있는-모듈">3. 스프링 프레임워크에서 제공하고 있는 모듈</h4>
+<ul>
+  <li><strong>spring-core</strong> : 스프링 핵심인 DI 와 IOC를 제공</li>
+  <li><strong>spring-aop</strong> : AOP 구현기능 제공</li>
+  <li><strong>spring-jdbc</strong> : jdbc를 쉽게 다룰 수 있는 기능 제공</li>
+  <li><strong>spring-tx</strong> : 스프링에서 제공하는 트랜젝션 관련기능 제공</li>
+  <li><strong>spring-webmvc</strong> : spring에서 제공하는 Controller, View를 이용한 스프링 MVC 기능구현 제공
+    <blockquote>
+      <p>모듈에 대한 의존 설정은 XML파일을 이용하여 개발자가 직접 관리가 가능하다. (maven 프로젝트)</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h4 id="4-스프링-컨테이너--ioc---inversion-of-control-">4. 스프링 컨테이너 ( IOC - Inversion Of Control )</h4>
+<blockquote>
+  <p>스프링에서 객체를 생성하고 조립하는 컨테이너로, 컨테이를 통해 생성된 객체를 빈(Bean)이라고 부른다.</p>
+</blockquote>
+
+<p><img src="/assets/posts/ioc container.png" alt="ioc container" /></p>
+
+<h3 id="개발환경-구축">개발환경 구축</h3>
+<h4 id="1jdkjava-development-kit-이클립스-설치">1.JDK(Java Development Kit), 이클립스 설치</h4>
+<p><img src="/assets/posts/jdk구조.png" alt="jdk" /></p>
+<ul>
+  <li>JDK : Java <strong>개발</strong>을 위한 도구</li>
+  <li>JRE : Java 프로그램 <strong>실행</strong>을 위한 도구</li>
+</ul>
+
+<blockquote>
+  <p>JDK = JRE + Development Tool (<code class="highlighter-rouge">java</code>, <code class="highlighter-rouge">javac</code>)<br />
+JRE = JVM + Library Classes</p>
+</blockquote>
+
+<h4 id="2-maven-프로젝트-생성">2. maven 프로젝트 생성</h4>
+<p><img src="/assets/posts/maven생성.png" alt="maven" /></p>
+<ul>
+  <li><strong>group-id</strong> : 프로젝트 식별 id</li>
+  <li><strong>artifact-id</strong> : 버젼정보를 생략한 jar 파일의 이름</li>
+  <li><strong>version</strong> : 숫자와 점으로 이루어진 일반적인 버젼형태 (<code class="highlighter-rouge">1.0</code> <code class="highlighter-rouge">1.0.1</code> …)</li>
+</ul>
+
+<h4 id="3-pomxml-작성">3. pom.xml 작성</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;groupId&gt;spring4&lt;/groupId&gt;
+	&lt;artifactId&gt;testPjt01&lt;/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+			&lt;version&gt;4.1.0.RELEASE&lt;/version&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;version&gt;3.1&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.8&lt;/source&gt;
+					&lt;target&gt;1.8&lt;/target&gt;
+					&lt;encoding&gt;utf-8&lt;/encoding&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+&lt;/project&gt;
+</code></pre></div></div>
+<blockquote>
+  <p>spring-context 모듈만 작성을 하였지만 그것과 의존관계에 있는 라이브러리를 자동으로 가져온다.</p>
+</blockquote>
+
+<p><img src="/assets/posts/maven로컬경로.png" alt="" /></p>
+
+<h4 id="4-maven-프로젝트-경로">4. maven 프로젝트 경로</h4>
+<ul>
+  <li>src/main
+    <ul>
+      <li>java : 실제 개발할 기능 구현</li>
+      <li>resource : 보조적인 파일, build 및 자원 관련 (<code class="highlighter-rouge">xml</code>, <code class="highlighter-rouge">properties</code>)</li>
+    </ul>
+  </li>
+</ul>
 
 </article>
 
@@ -193,7 +282,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   
     
     
-      <a href="//twitter.com/share?text=Dummy+Post&url=http%3A%2F%2Flocalhost%3A4000%2Fdummy%2F2015%2F04%2F18%2Fdummy.html&via=TheBenCentra"
+      <a href="//twitter.com/share?text=Spring+%EA%B0%9C%EC%9A%94&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F06%2Fspring-%25EA%25B0%259C%25EC%259A%2594.html&via=TheBenCentra"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -208,7 +297,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//www.facebook.com/sharer.php?t=Dummy+Post&u=http%3A%2F%2Flocalhost%3A4000%2Fdummy%2F2015%2F04%2F18%2Fdummy.html"
+      <a href="//www.facebook.com/sharer.php?t=Spring+%EA%B0%9C%EC%9A%94&u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F06%2Fspring-%25EA%25B0%259C%25EC%259A%2594.html"
         onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
         <i class="fa fa-facebook-square fa-lg"></i>
       </a>
@@ -233,7 +322,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fdummy%2F2015%2F04%2F18%2Fdummy.html"
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F06%2Fspring-%25EA%25B0%259C%25EC%259A%2594.html"
         onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
         <i class="fa fa-linkedin-square fa-lg"></i>
       </a>
@@ -246,7 +335,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//plus.google.com/share?title=Dummy+Post&url=http%3A%2F%2Flocalhost%3A4000%2Fdummy%2F2015%2F04%2F18%2Fdummy.html"
+      <a href="//plus.google.com/share?title=Spring+%EA%B0%9C%EC%9A%94&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F06%2Fspring-%25EA%25B0%259C%25EC%259A%2594.html"
         onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
         <i class="fa fa-google-plus-square fa-lg"></i>
       </a>
@@ -280,7 +369,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//www.pinterest.com/pin/create/button/?description=Dummy+Post&url=http%3A%2F%2Flocalhost%3A4000%2Fdummy%2F2015%2F04%2F18%2Fdummy.html&media=http://localhost:4000/assets/header_image.jpg"
+      <a href="//www.pinterest.com/pin/create/button/?description=Spring+%EA%B0%9C%EC%9A%94&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F06%2Fspring-%25EA%25B0%259C%25EC%259A%2594.html&media=http://localhost:4000/assets/posts/1.jpg"
         onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
         <i class="fa fa-pinterest-square fa-lg"></i>
       </a>
@@ -349,7 +438,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/dummy/2015/04/18/dummy.html') + '&title=Dummy Post'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/spring/2018/11/06/spring-%EA%B0%9C%EC%9A%94.html') + '&title=Spring 개요'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     

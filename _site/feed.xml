@@ -6,9 +6,37 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 06 Nov 2018 08:19:02 +0900</pubDate>
-    <lastBuildDate>Tue, 06 Nov 2018 08:19:02 +0900</lastBuildDate>
+    <pubDate>Tue, 06 Nov 2018 23:31:25 +0900</pubDate>
+    <lastBuildDate>Tue, 06 Nov 2018 23:31:25 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
+    
+      <item>
+        <title>Java Annotation</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;어노테이션은 Java의 &lt;strong&gt;메타데이터&lt;/strong&gt;를 의미한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 07 Nov 2018 00:56:59 +0900</pubDate>
+        <link>http://localhost:4000/java/2018/11/07/Java-Annotation.html</link>
+        <guid isPermaLink="true">http://localhost:4000/java/2018/11/07/Java-Annotation.html</guid>
+        
+        
+        <category>Java</category>
+        
+      </item>
+    
+      <item>
+        <title>Spring 프로젝트 실습</title>
+        <description>&lt;p&gt;이번 시간에는 XML을 통하여서 &lt;strong&gt;bean객체&lt;/strong&gt;를 생성하고, 생성된 객체를 &lt;strong&gt;IOC 컨테이너&lt;/strong&gt;로부터 불러와 사용하는 것을 실습해보도록 하겠습니다.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 06 Nov 2018 21:00:00 +0900</pubDate>
+        <link>http://localhost:4000/spring/2018/11/06/Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%EC%8A%B5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/spring/2018/11/06/Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%EC%8A%B5.html</guid>
+        
+        
+        <category>Spring</category>
+        
+      </item>
     
       <item>
         <title>Spring 개요</title>
@@ -69,7 +97,40 @@ JRE = JVM + Library Classes&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;3-pomxml-작성&quot;&gt;3. pom.xml 작성&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/posts/pom구조.png&quot; alt=&quot;pom.xml구조&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&amp;gt;
+	&amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
+	&amp;lt;groupId&amp;gt;spring4&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;testPjt01&amp;lt;/artifactId&amp;gt;
+	&amp;lt;version&amp;gt;0.0.1-SNAPSHOT&amp;lt;/version&amp;gt;
+	&amp;lt;dependencies&amp;gt;
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt;
+			&amp;lt;version&amp;gt;4.1.0.RELEASE&amp;lt;/version&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+	&amp;lt;/dependencies&amp;gt;
+	&amp;lt;build&amp;gt;
+		&amp;lt;plugins&amp;gt;
+			&amp;lt;plugin&amp;gt;
+				&amp;lt;artifactId&amp;gt;maven-compiler-plugin&amp;lt;/artifactId&amp;gt;
+				&amp;lt;version&amp;gt;3.1&amp;lt;/version&amp;gt;
+				&amp;lt;configuration&amp;gt;
+					&amp;lt;source&amp;gt;1.8&amp;lt;/source&amp;gt;
+					&amp;lt;target&amp;gt;1.8&amp;lt;/target&amp;gt;
+					&amp;lt;encoding&amp;gt;utf-8&amp;lt;/encoding&amp;gt;
+				&amp;lt;/configuration&amp;gt;
+			&amp;lt;/plugin&amp;gt;
+		&amp;lt;/plugins&amp;gt;
+	&amp;lt;/build&amp;gt;
+&amp;lt;/project&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;spring-context 모듈만 작성을 하였지만 그것과 의존관계에 있는 라이브러리를 자동으로 가져온다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/maven로컬경로.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;4-maven-프로젝트-경로&quot;&gt;4. maven 프로젝트 경로&lt;/h4&gt;
 &lt;ul&gt;
@@ -81,9 +142,9 @@ JRE = JVM + Library Classes&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Fri, 06 Nov 2015 00:56:59 +0900</pubDate>
-        <link>http://localhost:4000/spring/2015/11/06/spring-%EA%B0%9C%EC%9A%94.html</link>
-        <guid isPermaLink="true">http://localhost:4000/spring/2015/11/06/spring-%EA%B0%9C%EC%9A%94.html</guid>
+        <pubDate>Tue, 06 Nov 2018 00:56:59 +0900</pubDate>
+        <link>http://localhost:4000/spring/2018/11/06/spring-%EA%B0%9C%EC%9A%94.html</link>
+        <guid isPermaLink="true">http://localhost:4000/spring/2018/11/06/spring-%EA%B0%9C%EC%9A%94.html</guid>
         
         
         <category>Spring</category>
