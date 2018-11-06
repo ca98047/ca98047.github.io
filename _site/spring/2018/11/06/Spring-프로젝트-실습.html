@@ -167,6 +167,25 @@
 <article class="post-content">
   <p>이번 시간에는 XML을 통하여서 <strong>bean객체</strong>를 생성하고, 생성된 객체를 <strong>IOC 컨테이너</strong>로부터 불러와 사용하는 것을 실습해보도록 하겠습니다.</p>
 
+<h3 id="자바-파일을-이용한-프로그램-실행">자바 파일을 이용한 프로그램 실행</h3>
+<p>bean 객체를 사용하는 방식과 비교하기 위해 먼저 자바 파일을 통한 프로그램을 살펴보겠습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyCar {
+	public void drive() {
+		System.out.println("let's ride my car");
+	}
+}
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyClass {
+	public static void main(String[] args) {
+		MyCar mycar = new MyCar();
+		mycar.drive();
+	}
+}
+</code></pre></div></div>
+<p>생성자를 이용하여 drive 메서드를 실행 시키는 지극히 일반적인 코드 입니다.</p>
+
 </article>
 
 
