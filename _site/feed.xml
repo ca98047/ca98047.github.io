@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 07 Nov 2018 08:28:05 +0900</pubDate>
-    <lastBuildDate>Wed, 07 Nov 2018 08:28:05 +0900</lastBuildDate>
+    <pubDate>Sat, 10 Nov 2018 17:34:27 +0900</pubDate>
+    <lastBuildDate>Sat, 10 Nov 2018 17:34:27 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -29,7 +29,7 @@
         <title>Spring 프로젝트 실습</title>
         <description>&lt;p&gt;이번 시간에는 XML을 통하여서 &lt;strong&gt;bean객체&lt;/strong&gt;를 생성하고, 생성된 객체를 &lt;strong&gt;IOC 컨테이너&lt;/strong&gt;로부터 불러와 사용하는 것을 실습해보도록 하겠습니다.&lt;/p&gt;
 
-&lt;h3 id=&quot;자바-파일을-이용한-프로그램-실행&quot;&gt;자바 파일을 이용한 프로그램 실행&lt;/h3&gt;
+&lt;h3 id=&quot;자바-파일을-이용한-프로그램-실행--&quot;&gt;자바 파일을 이용한 프로그램 실행  !!!&lt;/h3&gt;
 &lt;p&gt;bean 객체를 사용하는 방식과 비교하기 위해 먼저 자바 파일을 통한 프로그램을 살펴보겠습니다.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class MyCar {
