@@ -43,13 +43,13 @@ cover: "/assets/posts/1.jpg"
 
 
 #### 2. maven 프로젝트 생성  
-spring을 사용하기 위해서는 앞서 설명한 spring모듈들이 포함된 라이브러리들이 필요합니다.  
-라이브러리들을 편리하게 로컬에서 다운을 받기 위해 maven프로젝트를 생성하여 spring을 사용하도록 합니다.
+spring을 사용하기 위해서는 앞서 설명한 spring모듈들이 포함된 라이브러리들이 필요하다.  
+라이브러리들을 편리하게 로컬에서 다운을 받기 위해 maven프로젝트를 생성하여 spring을 사용하도록 한다.
 
 ![maven](/assets/posts/maven생성.png)
 
 #### 3. pom.xml 작성    
-```pom.xml```(Project Object Model)은 메이븐의 기본이 되는 파일입니다. 한마디로 정의하면 프로젝트의 주요정보들이 포함된 곳이라고 할 수 있겠습니다.
+```pom.xml```(Project Object Model)은 메이븐의 기본이 되는 파일이다. 한마디로 정의하면 프로젝트의 주요정보들이 포함된 곳이라고 할 수 있다.
 
 * **project** : pom.xml 파일의 최상위 요소
 * **modelVersion** : POM의 현재버젼. 자동으로 업데이트 되기도 한다
@@ -94,7 +94,8 @@ spring을 사용하기 위해서는 앞서 설명한 spring모듈들이 포함�
 
 > spring-context 모듈만 작성을 하였지만 그것과 의존관계에 있는 라이브러리를 자동으로 가져온다.
 
-#### 4. maven 프로젝트 경로
+#### 4. maven 프로젝트 경로  
+폴더 경로에 따른 역할이 다르기 때문에 개발시 항상 기억을 하도록 하자.
   * src/main
     - java : 실제 개발할 기능 구현
     - resources : 보조적인 파일, build 및 자원 관련 (```xml```, ```properties```)
