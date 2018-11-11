@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 10 Nov 2018 17:34:27 +0900</pubDate>
-    <lastBuildDate>Sat, 10 Nov 2018 17:34:27 +0900</lastBuildDate>
+    <pubDate>Mon, 12 Nov 2018 00:17:34 +0900</pubDate>
+    <lastBuildDate>Mon, 12 Nov 2018 00:17:34 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -29,7 +29,7 @@
         <title>Spring 프로젝트 실습</title>
         <description>&lt;p&gt;이번 시간에는 XML을 통하여서 &lt;strong&gt;bean객체&lt;/strong&gt;를 생성하고, 생성된 객체를 &lt;strong&gt;IOC 컨테이너&lt;/strong&gt;로부터 불러와 사용하는 것을 실습해보도록 하겠습니다.&lt;/p&gt;
 
-&lt;h3 id=&quot;자바-파일을-이용한-프로그램-실행--&quot;&gt;자바 파일을 이용한 프로그램 실행  !!!&lt;/h3&gt;
+&lt;h3 id=&quot;자바-파일을-이용한-프로그램-실행&quot;&gt;자바 파일을 이용한 프로그램 실행&lt;/h3&gt;
 &lt;p&gt;bean 객체를 사용하는 방식과 비교하기 위해 먼저 자바 파일을 통한 프로그램을 살펴보겠습니다.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class MyCar {
@@ -47,6 +47,48 @@
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;생성자를 이용하여 drive 메서드를 실행 시키는 지극히 일반적인 코드 입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;xml을-통한-객체-생성-프로그램-실행&quot;&gt;XML을 통한 객체 생성 프로그램 실행&lt;/h3&gt;
+&lt;p&gt;지난시간에 우리는 스프링에서 존재하는 컨테이너에 대해 알아보았고, 컨테이너를 통해서 bean 객체가 생성되고 조립(DI/IOC)된다는 것을 확인하였습니다.
+이제 직접 xml을 통하여 spring container안에 bean 객체를 생성하고 그것을 사용해보도록 하겠습니다.&lt;/p&gt;
+
+&lt;p&gt;1) xml 파일생성&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;beans&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.springframework.org/schema/beans&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mycar&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;testPjt01.MyCar&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/beans&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;2) 컨테이너에 생성된 빈객체를 가져다가 사용&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;testPjt01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;springframework&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GenericXmlApplicationContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+		&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;컨테이너&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;리소스를&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;불러온다&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;GenericXmlApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GenericXmlApplicationContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;classpath:applicationContext.xml&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+		&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bean&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;객체&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;가져온다&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;입력&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+		&lt;span class=&quot;n&quot;&gt;MyCar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mycar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;mycar&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyCar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;mycar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+		&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;두개의 케이스의 실행결과가 동일한 것을 알 수 있습니다.
+두번째의 방식은 앞시간에 설명한 바와 같이 spring 컨테이너를 통하여 메모리에 로딩된 bean객체를 가져와 사용하는 방식입니다.&lt;/p&gt;
 </description>
         <pubDate>Tue, 06 Nov 2018 21:00:00 +0900</pubDate>
         <link>http://localhost:4000/spring/2018/11/06/Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%EC%8A%B5.html</link>
@@ -108,14 +150,23 @@ JRE = JVM + Library Classes&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h4 id=&quot;2-maven-프로젝트-생성&quot;&gt;2. maven 프로젝트 생성&lt;/h4&gt;
+&lt;p&gt;spring을 사용하기 위해서는 앞서 설명한 spring모듈들이 포함된 라이브러리들이 필요합니다.&lt;br /&gt;
+라이브러리들을 편리하게 로컬에서 다운을 받기 위해 maven프로젝트를 생성하여 spring을 사용하도록 합니다.&lt;/p&gt;
+
 &lt;p&gt;&lt;img src=&quot;/assets/posts/maven생성.png&quot; alt=&quot;maven&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;group-id&lt;/strong&gt; : 프로젝트 식별 id&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;artifact-id&lt;/strong&gt; : 버젼정보를 생략한 jar 파일의 이름&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;version&lt;/strong&gt; : 숫자와 점으로 이루어진 일반적인 버젼형태 (&lt;code class=&quot;highlighter-rouge&quot;&gt;1.0&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;1.0.1&lt;/code&gt; …)&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;h4 id=&quot;3-pomxml-작성&quot;&gt;3. pom.xml 작성&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;(Project Object Model)은 메이븐의 기본이 되는 파일입니다. 한마디로 정의하면 프로젝트의 주요정보들이 포함된 곳이라고 할 수 있겠습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;project&lt;/strong&gt; : pom.xml 파일의 최상위 요소&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;modelVersion&lt;/strong&gt; : POM의 현재버젼. 자동으로 업데이트 되기도 한다&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;group-id&lt;/strong&gt; : 프로젝트 식별 id&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;artifact-id&lt;/strong&gt; : 버젼정보를 생략한 jar 파일의 이름&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;packaging&lt;/strong&gt; : 해당 artifact의 package type (e.g JAR, WAR, EAR, etc)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;version&lt;/strong&gt; : 해당 artifact의 버젼(&lt;code class=&quot;highlighter-rouge&quot;&gt;1.0&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;1.0.1&lt;/code&gt; …)&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
 	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&amp;gt;
@@ -156,7 +207,7 @@ JRE = JVM + Library Classes&lt;/p&gt;
   &lt;li&gt;src/main
     &lt;ul&gt;
       &lt;li&gt;java : 실제 개발할 기능 구현&lt;/li&gt;
-      &lt;li&gt;resource : 보조적인 파일, build 및 자원 관련 (&lt;code class=&quot;highlighter-rouge&quot;&gt;xml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;properties&lt;/code&gt;)&lt;/li&gt;
+      &lt;li&gt;resources : 보조적인 파일, build 및 자원 관련 (&lt;code class=&quot;highlighter-rouge&quot;&gt;xml&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;properties&lt;/code&gt;)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
