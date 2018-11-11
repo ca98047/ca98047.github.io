@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 12 Nov 2018 00:37:07 +0900</pubDate>
-    <lastBuildDate>Mon, 12 Nov 2018 00:37:07 +0900</lastBuildDate>
+    <pubDate>Mon, 12 Nov 2018 08:09:01 +0900</pubDate>
+    <lastBuildDate>Mon, 12 Nov 2018 08:09:01 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -109,6 +109,7 @@
 &lt;strong&gt;Framework&lt;/strong&gt; : 틀, 즉 개발자가 개발(기능구현)에만 집중할 수 있도록 틀을 만들어줌&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;즉, 스프링은 자바 기반의 개발을 편하게 해주는 기술로 개발자가 was 관리, db 커넥션 및 리소스 관리 등을 신경쓰지 않고 개발에만 집중할 수 있도록 도와준다. 개발자는 스프링에서 제공하는 여러 모듈들 중 필요한 것들만 독립적으로 편리하게 사용이 가능하다.&lt;/p&gt;
 &lt;h4 id=&quot;2-spring-framework-주요기능&quot;&gt;2. Spring Framework 주요기능&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;DI&lt;/strong&gt; : 의존성 주입 (Dependency Injection)&lt;/li&gt;
