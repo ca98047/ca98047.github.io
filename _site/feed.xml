@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Centrarium</title>
+    <title>Jinow's blog</title>
     <description>A simple yet classy theme for your Jekyll website or blog.
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 12 Nov 2018 08:09:01 +0900</pubDate>
-    <lastBuildDate>Mon, 12 Nov 2018 08:09:01 +0900</lastBuildDate>
+    <pubDate>Mon, 12 Nov 2018 15:31:06 +0900</pubDate>
+    <lastBuildDate>Mon, 12 Nov 2018 15:31:06 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
