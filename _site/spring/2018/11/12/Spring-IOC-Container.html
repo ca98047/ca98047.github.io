@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Dummy Post</title>
-  <meta name="description" content="This is just a dummy post. Lorem ipsum and all the rest.">
+  <title>Spring IOC Container</title>
+  <meta name="description" content="1.1 Spring IOC Container와 Spring BeansIOC 컨테이너는 스프링 프레임워크의 핵심기술이다. 객체들의 생성부터 소멸에 이르기 까지 완벽한 life cycle로 설계하고 관리한다. 컨테이너는 DI(Dependency Injection) 기술을 사용하여 ap...">
   
   <meta name="author" content="jinow">
   <meta name="copyright" content="&copy; jinow 2018">
@@ -41,12 +41,12 @@
 
   
   <!-- Facebook OGP cards -->
-  <meta property="og:description" content="This is just a dummy post. Lorem ipsum and all the rest." />
+  <meta property="og:description" content="1.1 Spring IOC Container와 Spring BeansIOC 컨테이너는 스프링 프레임워크의 핵심기술이다. 객체들의 생성부터 소멸에 이르기 까지 완벽한 life cycle로 설계하고 관리한다. 컨테이너는 DI(Dependency Injection) 기술을 사용하여 ap..." />
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="Jinow's blog" />
-  <meta property="og:title" content="Dummy Post" />
+  <meta property="og:title" content="Spring IOC Container" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="http://localhost:4000/assets/logo.png" />
+  <meta property="og:image" content="http://localhost:4000/assets/posts/1.jpg" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="612" />
   <meta property="og:image:height" content="605" />
@@ -55,9 +55,9 @@
   
   <!-- Twitter: card tags -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Dummy Post">
-  <meta name="twitter:description" content="This is just a dummy post. Lorem ipsum and all the rest.">
-  <meta name="twitter:image" content="http://localhost:4000/assets/logo.png">
+  <meta name="twitter:title" content="Spring IOC Container">
+  <meta name="twitter:description" content="1.1 Spring IOC Container와 Spring BeansIOC 컨테이너는 스프링 프레임워크의 핵심기술이다. 객체들의 생성부터 소멸에 이르기 까지 완벽한 life cycle로 설계하고 관리한다. 컨테이너는 DI(Dependency Injection) 기술을 사용하여 ap...">
+  <meta name="twitter:image" content="http://localhost:4000/assets/posts/1.jpg">
   <meta name="twitter:url" content="http://localhost:4000">
   
 
@@ -65,7 +65,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/dummy/2015/04/18/dummy.html">
+  <link rel="canonical" href="http://localhost:4000/spring/2018/11/12/Spring-IOC-Container.html">
   <link rel="alternate" type="application/rss+xml" title="Jinow's blog" href="http://localhost:4000/feed.xml" />
 </head>
 
@@ -112,10 +112,6 @@
           
         
           
-          <li class="nav-link"><a href="/category/dummy/">Dummy</a>
-          
-        
-          
           <li class="nav-link"><a href="/category/jekyll/">Jekyll</a>
           
         
@@ -140,43 +136,70 @@
     <div class="page-content">
         <div class="post">
 
-<div class="post-header-container " >
-  <div class="scrim ">
+<div class="post-header-container has-cover" style="background-image: url(/assets/posts/1.jpg);">
+  <div class="scrim has-cover">
     <header class="post-header">
-      <h1 class="title">Dummy Post</h1>
-      <p class="info">by <strong>Ben Centra</strong></p>
+      <h1 class="title">Spring IOC Container</h1>
+      <p class="info">by <strong>jinow</strong></p>
     </header>
   </div>
 </div>
 
 <div class="wrapper">
 
- <span class="page-divider">
-  <span class="one"></span>
-  <span class="two"></span>
-</span>
- 
+
 
 <section class="post-meta">
-  <div class="post-date">April 18, 2015</div>
+  <div class="post-date">November 12, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/Dummy">Dummy</a>
+    <a href="/category/Spring">Spring</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>This is just a dummy post. Lorem ipsum and all the rest.</p>
+  <h3 id="11-spring-ioc-container와-spring-beans">1.1 Spring IOC Container와 Spring Beans</h3>
+<p><strong>IOC 컨테이너</strong>는 스프링 프레임워크의 핵심기술이다. 객체들의 생성부터 소멸에 이르기 까지 완벽한 life cycle로 설계하고 관리한다. 컨테이너는 <strong>DI(Dependency Injection)</strong> 기술을 사용하여 application을 구성하는 component들을 관리한다. <br />
+컨테이너는 객체들을 생성하는데 이러한 객체들을 <strong>Spring Beans</strong> 라고 한다.
+Spring Beans는 특별한 것이 아니라 컨테이너 안에서 생성되는 모든 객체들을 의미한다.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h3 id="12-spring-ioc-container">1.2 Spring IOC Container</h3>
+<p><code class="highlighter-rouge">org.springframework.context.ApplicationContext</code>는 스프링 컨테이너를 대표하는 interface로 <code class="highlighter-rouge">BeanFactory</code>를 확장한 것이다. Configuration Metadata를 읽어들여 bean 객체들을 생성·설정·조립하는 역할을 한다.<br />
+아래의 Diagram은 spring 공식문서에 포함된 이미지로 Spring 컨테이너가 동작하는 과정을 보여준다.
+<img src="/assets/posts/ioc container2.png" alt="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#spring-core" /></p>
+
+<h3 id="121-configuration-metadata">1.2.1 Configuration MetaData</h3>
+<p>앞선 다이어그램에서 보듯이 IOC 컨테이너는 메타데이터를 읽어들여서 application을 설정한다. 이 메타데이터는 컨테이너에게 bean 객체들을 어떤 기능으로서 사용할지 전달해주는 역할을 한다.
+메타데이터는 XML, Java Annotation 혹은 Java Code를 통해 표현된다.</p>
+
+<h4 id="xml-사용예시">XML 사용예시</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"..."</span><span class="nt">&gt;</span>   
+        <span class="c">&lt;!-- collaborators and configuration for this bean go here --&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"..."</span> <span class="na">class=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- collaborators and configuration for this bean go here --&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!-- more bean definitions go here --&gt;</span>
+
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">id</code> : bean 객체의 식별자<br />
+<code class="highlighter-rouge">class</code> : 사용하는 클래스의 full 경로를 포함한 이름</p>
+
+<blockquote>
+  <p>Spring 3.0 도입 이후 XML을 기반으로한 메타데이터 설정 방식에서 JavaConfig를 사용한 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-java">Java-based configuration</a> 방식으로 옮겨가고 있는 추세이다.</p>
+</blockquote>
 
 </article>
 
@@ -194,7 +217,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//www.facebook.com/sharer.php?t=Dummy+Post&u=http%3A%2F%2Flocalhost%3A4000%2Fdummy%2F2015%2F04%2F18%2Fdummy.html"
+      <a href="//www.facebook.com/sharer.php?t=Spring+IOC+Container&u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F12%2FSpring-IOC-Container.html"
         onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
         <i class="fa fa-facebook-square fa-lg"></i>
       </a>
@@ -238,7 +261,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//www.pinterest.com/pin/create/button/?description=Dummy+Post&url=http%3A%2F%2Flocalhost%3A4000%2Fdummy%2F2015%2F04%2F18%2Fdummy.html&media=http://localhost:4000/assets/posts/1.jpg"
+      <a href="//www.pinterest.com/pin/create/button/?description=Spring+IOC+Container&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F12%2FSpring-IOC-Container.html&media=http://localhost:4000/assets/posts/1.jpg"
         onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
         <i class="fa fa-pinterest-square fa-lg"></i>
       </a>
@@ -307,7 +330,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/dummy/2015/04/18/dummy.html') + '&title=Dummy Post'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/spring/2018/11/12/Spring-IOC-Container.html') + '&title=Spring IOC Container'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -367,10 +390,6 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         
         
           <li class="nav-link"><a href="/tag/welcome/">welcome</a>
-        
-        
-        
-          <li class="nav-link"><a href="/category/dummy/">Dummy</a>
         
         
         
