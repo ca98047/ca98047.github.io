@@ -28,7 +28,7 @@ cover: "/assets/posts/1.jpg"
 > 모듈에 대한 의존 설정은 XML파일을 이용하여 개발자가 직접 관리가 가능하다. (maven 프로젝트)  
 
 #### 4. 스프링 컨테이너 ( IOC - Inversion Of Control )
-> 스프링에서 객체를 생성하고 조립하는 컨테이너로, 컨테이를 통해 생성된 객체를 빈(Bean)이라고 부른다.  
+> [IOC Container](/spring/2018/11/12/Spring-IOC-Container.html)는 스프링에서 객체를 생성하고 조립하는 컨테이너로, 컨테이너를 통해 생성된 객체를 빈(Bean)이라고 부른다.  
 
 ![ioc container](/assets/posts/ioc container.png)  
 

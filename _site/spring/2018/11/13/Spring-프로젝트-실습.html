@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Spring 개요</title>
-  <meta name="description" content="Spring Framework 개요">
+  <title>Spring 프로젝트 실습</title>
+  <meta name="description" content="이번 시간에는 XML을 통하여서 bean객체를 생성하고, 생성된 객체를 IOC 컨테이너로부터 불러와 사용하는 것을 실습해보도록 하겠다.">
   
   <meta name="author" content="jinow">
   <meta name="copyright" content="&copy; jinow 2018">
@@ -41,10 +41,10 @@
 
   
   <!-- Facebook OGP cards -->
-  <meta property="og:description" content="Spring Framework 개요" />
+  <meta property="og:description" content="이번 시간에는 XML을 통하여서 bean객체를 생성하고, 생성된 객체를 IOC 컨테이너로부터 불러와 사용하는 것을 실습해보도록 하겠다." />
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="Jinow's blog" />
-  <meta property="og:title" content="Spring 개요" />
+  <meta property="og:title" content="Spring 프로젝트 실습" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/posts/1.jpg" />
   <meta property="og:image:type" content="image/png" />
@@ -55,8 +55,8 @@
   
   <!-- Twitter: card tags -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Spring 개요">
-  <meta name="twitter:description" content="Spring Framework 개요">
+  <meta name="twitter:title" content="Spring 프로젝트 실습">
+  <meta name="twitter:description" content="이번 시간에는 XML을 통하여서 bean객체를 생성하고, 생성된 객체를 IOC 컨테이너로부터 불러와 사용하는 것을 실습해보도록 하겠다.">
   <meta name="twitter:image" content="http://localhost:4000/assets/posts/1.jpg">
   <meta name="twitter:url" content="http://localhost:4000">
   
@@ -65,7 +65,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/spring/2018/11/06/spring-%EA%B0%9C%EC%9A%94.html">
+  <link rel="canonical" href="http://localhost:4000/spring/2018/11/13/Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%EC%8A%B5.html">
   <link rel="alternate" type="application/rss+xml" title="Jinow's blog" href="http://localhost:4000/feed.xml" />
 </head>
 
@@ -139,7 +139,7 @@
 <div class="post-header-container has-cover" style="background-image: url(/assets/posts/1.jpg);">
   <div class="scrim has-cover">
     <header class="post-header">
-      <h1 class="title">Spring 개요</h1>
+      <h1 class="title">Spring 프로젝트 실습</h1>
       <p class="info">by <strong>jinow</strong></p>
     </header>
   </div>
@@ -150,7 +150,7 @@
 
 
 <section class="post-meta">
-  <div class="post-date">November 6, 2018</div>
+  <div class="post-date">November 13, 2018</div>
   <div class="post-categories">
   in 
     
@@ -161,124 +161,68 @@
 </section>
 
 <article class="post-content">
-  <h3 id="spring-framework-개요">Spring Framework 개요</h3>
+  <p>이번 시간에는 XML을 통하여서 <strong>bean객체</strong>를 생성하고, 생성된 객체를 <strong>IOC 컨테이너</strong>로부터 불러와 사용하는 것을 실습해보도록 하겠다.</p>
 
-<h4 id="1-정의">1. 정의</h4>
-<blockquote>
-  <p>자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크<br />
-<strong>Framework</strong> : 틀, 즉 개발자가 개발(기능구현)에만 집중할 수 있도록 틀을 만들어줌</p>
-</blockquote>
+<h3 id="자바-파일을-이용한-프로그램-실행">자바 파일을 이용한 프로그램 실행</h3>
+<p>bean 객체를 사용하는 방식과 비교하기 위해 먼저 자바 파일을 통한 프로그램을 실행시켜본다.</p>
 
-<p>즉, 스프링은 자바 기반의 개발을 편하게 해주는 기술로 개발자가 was 관리, db 커넥션 및 리소스 관리 등을 신경쓰지 않고 개발에만 집중할 수 있도록 도와준다. 개발자는 스프링에서 제공하는 여러 모듈들 중 필요한 것들만 독립적으로 편리하게 사용이 가능하다.</p>
-<h4 id="2-spring-framework-주요기능">2. Spring Framework 주요기능</h4>
-<ul>
-  <li><strong>DI</strong> : 의존성 주입 (Dependency Injection)</li>
-  <li><strong>AOP</strong> : 관점지향 프로그래밍 (Aspect Oriented Programming)</li>
-  <li><strong>MVC</strong> : Model, View, Controller를 분리</li>
-</ul>
-
-<h4 id="3-스프링-프레임워크에서-제공하고-있는-모듈">3. 스프링 프레임워크에서 제공하고 있는 모듈</h4>
-<ul>
-  <li><strong>spring-core</strong> : 스프링 핵심인 DI 와 IOC를 제공</li>
-  <li><strong>spring-aop</strong> : AOP 구현기능 제공</li>
-  <li><strong>spring-jdbc</strong> : jdbc를 쉽게 다룰 수 있는 기능 제공</li>
-  <li><strong>spring-tx</strong> : 스프링에서 제공하는 트랜젝션 관련기능 제공</li>
-  <li><strong>spring-webmvc</strong> : spring에서 제공하는 Controller, View를 이용한 스프링 MVC 기능구현 제공
-    <blockquote>
-      <p>모듈에 대한 의존 설정은 XML파일을 이용하여 개발자가 직접 관리가 가능하다. (maven 프로젝트)</p>
-    </blockquote>
-  </li>
-</ul>
-
-<h4 id="4-스프링-컨테이너--ioc---inversion-of-control-">4. 스프링 컨테이너 ( IOC - Inversion Of Control )</h4>
-<blockquote>
-  <p><a href="/spring/2018/11/12/Spring-IOC-Container.html">IOC Container</a>는 스프링에서 객체를 생성하고 조립하는 컨테이너로, 컨테이너를 통해 생성된 객체를 빈(Bean)이라고 부른다.</p>
-</blockquote>
-
-<p><img src="/assets/posts/ioc container.png" alt="ioc container" /></p>
-
-<h3 id="개발환경-구축">개발환경 구축</h3>
-<h4 id="1jdkjava-development-kit-이클립스-설치">1.JDK(Java Development Kit), 이클립스 설치</h4>
-<p><img src="/assets/posts/jdk구조.png" alt="jdk" /></p>
-<ul>
-  <li>JDK : Java <strong>개발</strong>을 위한 도구</li>
-  <li>JRE : Java 프로그램 <strong>실행</strong>을 위한 도구</li>
-</ul>
-
-<blockquote>
-  <p>JDK = JRE + Development Tool (<code class="highlighter-rouge">java</code>, <code class="highlighter-rouge">javac</code>)<br />
-JRE = JVM + Library Classes</p>
-</blockquote>
-
-<h4 id="2-maven-프로젝트-생성">2. maven 프로젝트 생성</h4>
-<p>spring을 사용하기 위해서는 앞서 설명한 spring모듈들이 포함된 라이브러리들이 필요하다.<br />
-라이브러리들을 편리하게 로컬에서 다운을 받기 위해 maven프로젝트를 생성하여 spring을 사용하도록 한다.</p>
-
-<p><img src="/assets/posts/maven생성.png" alt="maven" /></p>
-
-<h4 id="3-pomxml-작성">3. pom.xml 작성</h4>
-<p><code class="highlighter-rouge">pom.xml</code>(Project Object Model)은 메이븐의 기본이 되는 파일이다. 한마디로 정의하면 프로젝트의 주요정보들이 포함된 곳이라고 할 수 있다.</p>
-
-<ul>
-  <li><strong>project</strong> : pom.xml 파일의 최상위 요소</li>
-  <li><strong>modelVersion</strong> : POM의 현재버젼. 자동으로 업데이트 되기도 한다</li>
-  <li><strong>group-id</strong> : 프로젝트 식별 id</li>
-  <li><strong>artifact-id</strong> : 버젼정보를 생략한 jar 파일의 이름</li>
-  <li><strong>packaging</strong> : 해당 artifact의 package type (e.g JAR, WAR, EAR, etc)</li>
-  <li><strong>version</strong> : 해당 artifact의 버젼(<code class="highlighter-rouge">1.0</code> <code class="highlighter-rouge">1.0.1</code> …)</li>
-  <li>
-    <dl>
-      <dt><strong>maven 컴파일러 버젼 설정</strong></dt>
-      <dd>maven의 기본 life cycle에서 compile되는 시기에 실행되는 compile 플러그인은 별도 설정이 없을 경우, 자바 1.5버젼을 기준으로 컴파일을 하기 때문에 간혹 에러가 발생할 경우가 있다. 이에 따라 source와 target 옵션으로 버젼을 수정해준다.</dd>
-    </dl>
-  </li>
-</ul>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
-	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-	&lt;groupId&gt;spring4&lt;/groupId&gt;
-	&lt;artifactId&gt;testPjt01&lt;/artifactId&gt;
-	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-	&lt;dependencies&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/groupId&gt;
-			&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
-			&lt;version&gt;4.1.0.RELEASE&lt;/version&gt;
-		&lt;/dependency&gt;
-	&lt;/dependencies&gt;
-	&lt;build&gt;
-		&lt;plugins&gt;
-			&lt;plugin&gt;
-				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-				&lt;version&gt;3.1&lt;/version&gt;
-				&lt;configuration&gt;
-					&lt;source&gt;1.8&lt;/source&gt;
-					&lt;target&gt;1.8&lt;/target&gt;
-					&lt;encoding&gt;utf-8&lt;/encoding&gt;
-				&lt;/configuration&gt;
-			&lt;/plugin&gt;
-		&lt;/plugins&gt;
-	&lt;/build&gt;
-&lt;/project&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyCar {
+	public void drive() {
+		System.out.println("let's ride my car");
+	}
+}
 </code></pre></div></div>
-<p><img src="/assets/posts/maven로컬경로.png" alt="" /></p>
 
-<blockquote>
-  <p>spring-context 모듈만 작성을 하였지만 그것과 의존관계에 있는 라이브러리를 자동으로 가져온다.</p>
-</blockquote>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyClass {
+	public static void main(String[] args) {
+		MyCar mycar = new MyCar();
+		mycar.drive();
+	}
+}
+</code></pre></div></div>
+<p>생성자를 이용하여 drive 메서드를 실행 시키는 지극히 일반적인 코드로 생성된 객체의 메서드를 잘 실행하고 있다.</p>
 
-<h4 id="4-maven-프로젝트-경로">4. maven 프로젝트 경로</h4>
-<p>폴더 경로에 따른 역할이 다르기 때문에 개발시 항상 기억을 하도록 하자.</p>
-<ul>
-  <li>src/main
-    <ul>
-      <li>java : 실제 개발할 기능 구현</li>
-      <li>resources : 보조적인 파일, build 및 자원 관련 (<code class="highlighter-rouge">xml</code>, <code class="highlighter-rouge">properties</code>)</li>
-    </ul>
-  </li>
-</ul>
+<h3 id="xml을-통한-객체-생성-프로그램-실행">XML을 통한 객체 생성 프로그램 실행</h3>
+<p>지난시간에 우리는 스프링에서 존재하는 컨테이너에 대해 알아보았고, 컨테이너를 통해서 bean 객체가 생성되고 조립(DI/IOC)된다는 것을 확인하였다.
+이제 직접 xml을 통하여 spring container안에 bean 객체를 생성하고 그것을 사용해보도록 할것이다.</p>
+
+<p>1) xml 파일생성</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd"</span><span class="nt">&gt;</span>
+
+	<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"mycar"</span> <span class="na">class=</span><span class="s">"testPjt01.MyCar"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+
+</code></pre></div></div>
+
+<p>2) 컨테이너에 생성된 빈객체를 가져다가 사용</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">testPjt01</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="n">springframework</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">support</span><span class="p">.</span><span class="n">GenericXmlApplicationContext</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">MyClass</span> <span class="p">{</span>
+	<span class="k">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="k">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+		<span class="p">//</span><span class="err">컨테이너</span> <span class="err">리소스를</span> <span class="err">불러온다</span>
+		<span class="n">GenericXmlApplicationContext</span> <span class="n">ctx</span> <span class="p">=</span>
+				<span class="n">new</span> <span class="n">GenericXmlApplicationContext</span><span class="p">(</span><span class="s2">"classpath:applicationContext.xml"</span><span class="p">);</span>
+
+		<span class="p">//</span><span class="n">bean</span><span class="err">객체</span> <span class="err">가져온다</span> <span class="p">(</span><span class="n">id</span> <span class="err">입력</span><span class="p">)</span>  
+		<span class="n">MyCar</span> <span class="n">mycar</span> <span class="p">=</span> <span class="n">ctx</span><span class="p">.</span><span class="n">getBean</span><span class="p">(</span><span class="s2">"mycar"</span><span class="p">,</span> <span class="n">MyCar</span><span class="p">.</span><span class="n">class</span><span class="p">);</span>
+		<span class="n">mycar</span><span class="p">.</span><span class="n">drive</span><span class="p">();</span>
+
+		<span class="n">ctx</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>두개의 케이스의 실행결과가 동일한 것을 알 수 있다.
+두번째의 방식은 앞시간에 설명한 바와 같이 spring 컨테이너를 통하여 메모리에 로딩된 bean객체를 가져와 사용하는 방식이다.</p>
 
 </article>
 
@@ -296,7 +240,7 @@ JRE = JVM + Library Classes</p>
     
     
     
-      <a href="//www.facebook.com/sharer.php?t=Spring+%EA%B0%9C%EC%9A%94&u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F06%2Fspring-%25EA%25B0%259C%25EC%259A%2594.html"
+      <a href="//www.facebook.com/sharer.php?t=Spring+%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8+%EC%8B%A4%EC%8A%B5&u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F13%2FSpring-%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8-%25EC%258B%25A4%25EC%258A%25B5.html"
         onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
         <i class="fa fa-facebook-square fa-lg"></i>
       </a>
@@ -340,7 +284,7 @@ JRE = JVM + Library Classes</p>
     
     
     
-      <a href="//www.pinterest.com/pin/create/button/?description=Spring+%EA%B0%9C%EC%9A%94&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F06%2Fspring-%25EA%25B0%259C%25EC%259A%2594.html&media=http://localhost:4000/assets/posts/1.jpg"
+      <a href="//www.pinterest.com/pin/create/button/?description=Spring+%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8+%EC%8B%A4%EC%8A%B5&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F13%2FSpring-%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8-%25EC%258B%25A4%25EC%258A%25B5.html&media=http://localhost:4000/assets/posts/1.jpg"
         onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
         <i class="fa fa-pinterest-square fa-lg"></i>
       </a>
@@ -409,7 +353,7 @@ JRE = JVM + Library Classes</p>
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/spring/2018/11/06/spring-%EA%B0%9C%EC%9A%94.html') + '&title=Spring 개요'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/spring/2018/11/13/Spring-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%EC%8A%B5.html') + '&title=Spring 프로젝트 실습'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
