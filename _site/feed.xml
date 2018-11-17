@@ -6,13 +6,14 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Nov 2018 23:40:29 +0900</pubDate>
-    <lastBuildDate>Sat, 17 Nov 2018 23:40:29 +0900</lastBuildDate>
+    <pubDate>Sun, 18 Nov 2018 01:45:34 +0900</pubDate>
+    <lastBuildDate>Sun, 18 Nov 2018 01:45:34 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
         <title>Spring DI</title>
-        <description>&lt;p&gt;DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.&lt;/p&gt;
+        <description>&lt;h3 id=&quot;1-의존성-주입&quot;&gt;1. 의존성 주입&lt;/h3&gt;
+&lt;p&gt;DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다.&lt;/p&gt;
 
 &lt;p&gt;다음 코드를 통해 객체간의 의존관계가 무엇인지를 알아보도록 하자.&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -61,6 +62,8 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;전자 장난감을 뜻하는 ElectoricToy 클래스가 있다고 가정하자. 전자 장난감은 배터리가 있어야 돌아가기 때문에 배터리를 필요로 하고, 해당 클래스는 A배터리로 사용하고 있다. 따라서 ElectroicToy 클래스와 Battery 클래스는 서로에 대해 의존하고 있고, 우리는 이것을 &lt;strong&gt;의존관계&lt;/strong&gt;를 갖고 있다고 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;11-setter-함수를-통한-의존성-주입&quot;&gt;1.1 setter 함수를 통한 의존성 주입&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -123,7 +126,56 @@ battery capacity : 10
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;battery name : B배터리
 battery capacity : 30
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 &lt;u&gt;의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을&lt;/u&gt; ** 의존성 주입 ** &lt;u&gt;이라고 한다.&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 &lt;u&gt;의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을&lt;/u&gt; &lt;strong&gt;의존성 주입&lt;/strong&gt;이라고 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;12-생성자-함수를-통한-의존성-주입&quot;&gt;1.2 생성자 함수를 통한 의존성 주입&lt;/h3&gt;
+&lt;p&gt;의존성 주입은 이전과 같이 &lt;strong&gt;setter&lt;/strong&gt; 함수를 이용해도 가능하지만 &lt;strong&gt;생성자&lt;/strong&gt;를 이용해서도 가능하다. 이번에는 장난감을 만들때 이미 만들어진 배터리 중 원하는 배터리를 선택한다고 가정하자.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.*;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ElectronicToy&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Battery&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ElectronicToy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;battery&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BatteryA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;의존성&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;주입&lt;/span&gt;  
+	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ElectronicToy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Battery&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;battery&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;장난감이&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;장착한&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;배터리의&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;스팩을&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;보여준다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;showBatterySpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nf&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;battery name : &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+		&lt;span class=&quot;nf&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;battery capacity : &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;battery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getCapacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;기존 클래스에서 setter함수를 제외하고, Battery를 변수로 받는 생성자 함수를 overloading 하였다.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.*;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ToyCreateExam&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+	&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;배터리&lt;/span&gt;   
+		&lt;span class=&quot;n&quot;&gt;Battery&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batteryA&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BatteryA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;Battery&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batteryB&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BatteryB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+		&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;원하는&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;배터리를&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;조립&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;주입&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;한다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;  
+		&lt;span class=&quot;n&quot;&gt;ElectronicToy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toy&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ElectronicToy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batteryA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ElectronicToy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toy&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ElectronicToy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batteryB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+		&lt;span class=&quot;n&quot;&gt;toy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;showBatterySpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;다음과 같이 A배터리와 B배터리가 존재하는 상태에서 객체를 생성할 때 원하는 배터리를 &lt;strong&gt;생성자에 주입&lt;/strong&gt;하여서 장난감을 생성하였다.&lt;/p&gt;
+
+&lt;h3 id=&quot;13-spring-container-안에서의-의존성-주입&quot;&gt;1.3 Spring Container 안에서의 의존성 주입&lt;/h3&gt;
 </description>
         <pubDate>Sat, 17 Nov 2018 23:18:25 +0900</pubDate>
         <link>http://localhost:4000/spring/2018/11/17/Spring-DI.html</link>
@@ -138,7 +190,7 @@ battery capacity : 30
         <title>Spring 프로젝트 실습</title>
         <description>&lt;p&gt;이번 시간에는 XML을 통하여서 &lt;strong&gt;bean객체&lt;/strong&gt;를 생성하고, 생성된 객체를 &lt;strong&gt;IOC 컨테이너&lt;/strong&gt;로부터 불러와 사용하는 것을 실습해보도록 하겠다.&lt;/p&gt;
 
-&lt;h3 id=&quot;자바-파일을-이용한-프로그램-실행&quot;&gt;자바 파일을 이용한 프로그램 실행&lt;/h3&gt;
+&lt;h3 id=&quot;1-자바-파일을-이용한-프로그램-실행&quot;&gt;1. 자바 파일을 이용한 프로그램 실행&lt;/h3&gt;
 &lt;p&gt;bean 객체를 사용하는 방식과 비교하기 위해 먼저 자바 파일을 통한 프로그램을 실행시켜본다.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class MyCar {
@@ -157,7 +209,7 @@ battery capacity : 30
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;생성자를 이용하여 drive 메서드를 실행 시키는 지극히 일반적인 코드로 생성된 객체의 메서드를 잘 실행하고 있다.&lt;/p&gt;
 
-&lt;h3 id=&quot;xml을-통한-객체-생성-프로그램-실행&quot;&gt;XML을 통한 객체 생성 프로그램 실행&lt;/h3&gt;
+&lt;h3 id=&quot;2-xml을-통한-객체-생성-프로그램-실행&quot;&gt;2. XML을 통한 객체 생성 프로그램 실행&lt;/h3&gt;
 &lt;p&gt;지난시간에 우리는 스프링에서 존재하는 컨테이너에 대해 알아보았고, 컨테이너를 통해서 bean 객체가 생성되고 조립(DI/IOC)된다는 것을 확인하였다.
 이제 직접 xml을 통하여 spring container안에 bean 객체를 생성하고 그것을 사용해보도록 할것이다.&lt;/p&gt;
 

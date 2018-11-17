@@ -6,8 +6,8 @@ categories: Spring
 layout: post
 date: '2018-11-17 23:18:25'
 ---
-
-DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.  
+### 1. 의존성 주입
+DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다.
 
 다음 코드를 통해 객체간의 의존관계가 무엇인지를 알아보도록 하자.
 ```
@@ -59,7 +59,9 @@ public class ElectronicToy {
 	}
 }
 ```
-전자 장난감을 뜻하는 ElectoricToy 클래스가 있다고 가정하자. 전자 장난감은 배터리가 있어야 돌아가기 때문에 배터리를 필요로 하고, 해당 클래스는 A배터리로 사용하고 있다. 따라서 ElectroicToy 클래스와 Battery 클래스는 서로에 대해 의존하고 있고, 우리는 이것을 **의존관계**를 갖고 있다고 한다.   
+전자 장난감을 뜻하는 ElectoricToy 클래스가 있다고 가정하자. 전자 장난감은 배터리가 있어야 돌아가기 때문에 배터리를 필요로 하고, 해당 클래스는 A배터리로 사용하고 있다. 따라서 ElectroicToy 클래스와 Battery 클래스는 서로에 대해 의존하고 있고, 우리는 이것을 **의존관계**를 갖고 있다고 한다.  
+
+### 1.1 setter 함수를 통한 의존성 주입
 
 ```
 package di;
@@ -127,4 +129,55 @@ public class ToyCreateExam {
 battery name : B배터리
 battery capacity : 30
 ```
-이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 <U>의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을</U> ** 의존성 주입 ** <U>이라고 한다.</U>
+이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 <U>의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을</U> **의존성 주입**이라고 한다.
+
+### 1.2 생성자 함수를 통한 의존성 주입
+의존성 주입은 이전과 같이 **setter** 함수를 이용해도 가능하지만 **생성자**를 이용해서도 가능하다. 이번에는 장난감을 만들때 이미 만들어진 배터리 중 원하는 배터리를 선택한다고 가정하자.
+
+```
+package di.constructor;
+
+import di.*;
+
+public class ElectronicToy {
+	private Battery battery;
+
+	public ElectronicToy() {
+		battery = new BatteryA();
+	}
+
+	//의존성 주입  
+	public ElectronicToy(Battery battery) {
+		this.battery = battery;
+	}
+	//장난감이 장착한 배터리의 스팩을 보여준다.
+	public void showBatterySpec() {
+		System.out.println("battery name : " + battery.getName());
+		System.out.println("battery capacity : " + battery.getCapacity());
+	}
+}
+```
+기존 클래스에서 setter함수를 제외하고, Battery를 변수로 받는 생성자 함수를 overloading 하였다.
+```
+package di.constructor;
+
+import di.*;
+
+public class ToyCreateExam {
+
+	public static void main(String[] args) {
+		//배터리   
+		Battery batteryA = new BatteryA();
+		Battery batteryB = new BatteryB();
+
+		//원하는 배터리를 조립(주입)한다.  
+		ElectronicToy toy = new ElectronicToy(batteryA);
+		//ElectronicToy toy = new ElectronicToy(batteryB);
+
+		toy.showBatterySpec();
+	}
+}
+```
+다음과 같이 A배터리와 B배터리가 존재하는 상태에서 객체를 생성할 때 원하는 배터리를 **생성자에 주입**하여서 장난감을 생성하였다.  
+
+### 1.3 Spring Container 안에서의 의존성 주입

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Spring DI</title>
-  <meta name="description" content="DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.">
+  <meta name="description" content="1. 의존성 주입DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다.">
   
   <meta name="author" content="jinow">
   <meta name="copyright" content="&copy; jinow 2018">
@@ -41,7 +41,7 @@
 
   
   <!-- Facebook OGP cards -->
-  <meta property="og:description" content="DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다." />
+  <meta property="og:description" content="1. 의존성 주입DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다." />
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="Jinow's blog" />
   <meta property="og:title" content="Spring DI" />
@@ -56,7 +56,7 @@
   <!-- Twitter: card tags -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Spring DI">
-  <meta name="twitter:description" content="DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.">
+  <meta name="twitter:description" content="1. 의존성 주입DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다.">
   <meta name="twitter:image" content="http://localhost:4000/assets/posts/1.jpg">
   <meta name="twitter:url" content="http://localhost:4000">
   
@@ -163,7 +163,8 @@
 </section>
 
 <article class="post-content">
-  <p>DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.</p>
+  <h3 id="1-의존성-주입">1. 의존성 주입</h3>
+<p>DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다.</p>
 
 <p>다음 코드를 통해 객체간의 의존관계가 무엇인지를 알아보도록 하자.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
@@ -212,6 +213,8 @@
 <span class="p">}</span>
 </code></pre></div></div>
 <p>전자 장난감을 뜻하는 ElectoricToy 클래스가 있다고 가정하자. 전자 장난감은 배터리가 있어야 돌아가기 때문에 배터리를 필요로 하고, 해당 클래스는 A배터리로 사용하고 있다. 따라서 ElectroicToy 클래스와 Battery 클래스는 서로에 대해 의존하고 있고, 우리는 이것을 <strong>의존관계</strong>를 갖고 있다고 한다.</p>
+
+<h3 id="11-setter-함수를-통한-의존성-주입">1.1 setter 함수를 통한 의존성 주입</h3>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
 
@@ -274,7 +277,56 @@ battery capacity : 10
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>battery name : B배터리
 battery capacity : 30
 </code></pre></div></div>
-<p>이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 <u>의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을</u> ** 의존성 주입 ** <u>이라고 한다.</u></p>
+<p>이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 <u>의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을</u> <strong>의존성 주입</strong>이라고 한다.</p>
+
+<h3 id="12-생성자-함수를-통한-의존성-주입">1.2 생성자 함수를 통한 의존성 주입</h3>
+<p>의존성 주입은 이전과 같이 <strong>setter</strong> 함수를 이용해도 가능하지만 <strong>생성자</strong>를 이용해서도 가능하다. 이번에는 장난감을 만들때 이미 만들어진 배터리 중 원하는 배터리를 선택한다고 가정하자.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">.</span><span class="n">constructor</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">di</span><span class="p">.*;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">ElectronicToy</span> <span class="p">{</span>
+	<span class="n">private</span> <span class="n">Battery</span> <span class="n">battery</span><span class="p">;</span>
+
+	<span class="k">public</span> <span class="n">ElectronicToy</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">battery</span> <span class="p">=</span> <span class="n">new</span> <span class="n">BatteryA</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="p">//</span><span class="err">의존성</span> <span class="err">주입</span>  
+	<span class="k">public</span> <span class="n">ElectronicToy</span><span class="p">(</span><span class="n">Battery</span> <span class="n">battery</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="n">battery</span> <span class="p">=</span> <span class="n">battery</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="p">//</span><span class="err">장난감이</span> <span class="err">장착한</span> <span class="err">배터리의</span> <span class="err">스팩을</span> <span class="err">보여준다</span><span class="p">.</span>
+	<span class="k">public</span> <span class="n">void</span> <span class="n">showBatterySpec</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nf">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s2">"battery name : "</span> <span class="p">+</span> <span class="n">battery</span><span class="p">.</span><span class="n">getName</span><span class="p">());</span>
+		<span class="nf">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s2">"battery capacity : "</span> <span class="p">+</span> <span class="n">battery</span><span class="p">.</span><span class="n">getCapacity</span><span class="p">());</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>기존 클래스에서 setter함수를 제외하고, Battery를 변수로 받는 생성자 함수를 overloading 하였다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">.</span><span class="n">constructor</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">di</span><span class="p">.*;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">ToyCreateExam</span> <span class="p">{</span>
+
+	<span class="k">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="k">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+		<span class="p">//</span><span class="err">배터리</span>   
+		<span class="n">Battery</span> <span class="n">batteryA</span> <span class="p">=</span> <span class="n">new</span> <span class="n">BatteryA</span><span class="p">();</span>
+		<span class="n">Battery</span> <span class="n">batteryB</span> <span class="p">=</span> <span class="n">new</span> <span class="n">BatteryB</span><span class="p">();</span>
+
+		<span class="p">//</span><span class="err">원하는</span> <span class="err">배터리를</span> <span class="err">조립</span><span class="p">(</span><span class="err">주입</span><span class="p">)</span><span class="err">한다</span><span class="p">.</span>  
+		<span class="n">ElectronicToy</span> <span class="n">toy</span> <span class="p">=</span> <span class="n">new</span> <span class="n">ElectronicToy</span><span class="p">(</span><span class="n">batteryA</span><span class="p">);</span>
+		<span class="p">//</span><span class="n">ElectronicToy</span> <span class="n">toy</span> <span class="p">=</span> <span class="n">new</span> <span class="n">ElectronicToy</span><span class="p">(</span><span class="n">batteryB</span><span class="p">);</span>
+
+		<span class="n">toy</span><span class="p">.</span><span class="n">showBatterySpec</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>다음과 같이 A배터리와 B배터리가 존재하는 상태에서 객체를 생성할 때 원하는 배터리를 <strong>생성자에 주입</strong>하여서 장난감을 생성하였다.</p>
+
+<h3 id="13-spring-container-안에서의-의존성-주입">1.3 Spring Container 안에서의 의존성 주입</h3>
 
 </article>
 
