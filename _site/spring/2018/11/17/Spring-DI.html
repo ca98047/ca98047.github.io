@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Spring DI</title>
+  <meta name="description" content="DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.">
+  
+  <meta name="author" content="jinow">
+  <meta name="copyright" content="&copy; jinow 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다." />
+  <meta property="og:url" content="http://localhost:4000" />
+  <meta property="og:site_name" content="Jinow's blog" />
+  <meta property="og:title" content="Spring DI" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/posts/1.jpg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Spring DI">
+  <meta name="twitter:description" content="DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.">
+  <meta name="twitter:image" content="http://localhost:4000/assets/posts/1.jpg">
+  <meta name="twitter:url" content="http://localhost:4000">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/spring/2018/11/17/Spring-DI.html">
+  <link rel="alternate" type="application/rss+xml" title="Jinow's blog" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="Jinow's blog">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/welcome/">welcome</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/jekyll/">Jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/spring/">Spring</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/java/">Java</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/posts/1.jpg);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">Spring DI</h1>
+      <p class="info">by <strong>jinow</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">November 17, 2018</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Spring">Spring</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음을 의미한다.</p>
+
+<p>다음 코드를 통해 객체간의 의존관계가 무엇인지를 알아보도록 하자.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">Battery</span> <span class="p">{</span>
+	<span class="n">protected</span> <span class="k">String</span> <span class="n">name</span><span class="p">;</span>
+	<span class="n">protected</span> <span class="n">int</span> <span class="n">capacity</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">BatteryA</span> <span class="n">extends</span> <span class="n">Battery</span> <span class="p">{</span>
+
+	<span class="k">public</span> <span class="n">BatteryA</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s2">"A배터리"</span><span class="p">;</span>
+		<span class="n">this</span><span class="p">.</span><span class="n">capacity</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">BatteryB</span> <span class="n">extends</span> <span class="n">Battery</span> <span class="p">{</span>
+
+	<span class="k">public</span> <span class="n">BatteryB</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s2">"B배터리"</span><span class="p">;</span>
+		<span class="n">this</span><span class="p">.</span><span class="n">capacity</span> <span class="p">=</span> <span class="m">30</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>장난감에 사용할 A배터리와 B배터리가 있고, 각각의 용량은 10, 30 이다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">ElectronicToy</span> <span class="p">{</span>
+	<span class="n">private</span> <span class="n">Battery</span> <span class="n">battery</span><span class="p">;</span>
+
+	<span class="k">public</span> <span class="n">ElectronicToy</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">battery</span> <span class="p">=</span> <span class="n">new</span> <span class="n">BatteryA</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="p">//</span><span class="err">장난감이</span> <span class="err">장착한</span> <span class="err">배터리의</span> <span class="err">스팩을</span> <span class="err">보여준다</span><span class="p">.</span>
+	<span class="k">public</span> <span class="n">void</span> <span class="n">showBatterySpec</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nf">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s2">"battery name : "</span> <span class="p">+</span> <span class="n">battery</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+		<span class="nf">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s2">"battery capacity : "</span> <span class="p">+</span> <span class="n">battery</span><span class="p">.</span><span class="n">capacity</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>전자 장난감을 뜻하는 ElectoricToy 클래스가 있다고 가정하자. 전자 장난감은 배터리가 있어야 돌아가기 때문에 배터리를 필요로 하고, 해당 클래스는 A배터리로 사용하고 있다. 따라서 ElectroicToy 클래스와 Battery 클래스는 서로에 대해 의존하고 있고, 우리는 이것을 <strong>의존관계</strong>를 갖고 있다고 한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">ToyCreateExam</span> <span class="p">{</span>
+	<span class="k">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="k">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+		<span class="n">ElectronicToy</span> <span class="n">toy</span> <span class="p">=</span> <span class="n">new</span> <span class="n">ElectronicToy</span><span class="p">();</span>
+		<span class="n">toy</span><span class="p">.</span><span class="n">showBatterySpec</span><span class="p">();</span>
+
+		<span class="p">//</span><span class="m">10</span><span class="err">번</span> <span class="err">라인</span> <span class="err">에러</span><span class="p">..</span> <span class="err">배터리</span> <span class="err">교체불가</span>
+		<span class="p">//</span><span class="n">toy</span><span class="p">.</span><span class="n">battery</span> <span class="p">=</span> <span class="n">new</span> <span class="n">BatteryB</span><span class="p">();</span>
+
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>battery name : A배터리
+battery capacity : 10
+</code></pre></div></div>
+<p>그렇다면 main함수를 통해 전자 장난감을 생성하여 배터리의 스팩을 살펴보도록 하자. 장난감은 A배터리를 사용하고 있기 때문에 해당 메서드를 실행 시 A배터리에 대한 스팩을 보여주고 있다.</p>
+
+<p>만약 이 장난감의 배터리를 다른 베터리(BatteryB)로 교체를 하고싶으면 어떻게 해야할까? 현재의 구조에서는 배터리를 교체할 수 없다. 왜냐하면 해당 장난감은 배터리 일체형 장난감이기 때문이다. 따라서 배터리를 교체할 수 있도록 다음과 같이 코드를 개선하였다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">ElectronicToy</span> <span class="p">{</span>
+	<span class="n">private</span> <span class="n">Battery</span> <span class="n">battery</span><span class="p">;</span>
+
+	<span class="k">public</span> <span class="n">ElectronicToy</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">battery</span> <span class="p">=</span> <span class="n">new</span> <span class="n">BatteryA</span><span class="p">();</span>
+	<span class="p">}</span>
+
+	<span class="p">//</span><span class="err">장난감이</span> <span class="err">장착한</span> <span class="err">배터리의</span> <span class="err">스팩을</span> <span class="err">보여준다</span><span class="p">.</span>
+	<span class="k">public</span> <span class="n">void</span> <span class="n">showBatterySpec</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nf">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s2">"battery name : "</span> <span class="p">+</span> <span class="n">battery</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+		<span class="nf">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s2">"battery capacity : "</span> <span class="p">+</span> <span class="n">battery</span><span class="p">.</span><span class="n">capacity</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="p">//</span><span class="err">의존성</span> <span class="err">주입</span>
+	<span class="k">public</span> <span class="n">void</span> <span class="n">setBattery</span><span class="p">(</span><span class="n">Battery</span> <span class="n">battery</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="n">battery</span> <span class="p">=</span> <span class="n">battery</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>우리가 잘 알고있는 setter함수를 추가하였다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">di</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="n">class</span> <span class="n">ToyCreateExam</span> <span class="p">{</span>
+	<span class="k">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="k">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+
+		<span class="p">//</span><span class="err">장난감</span> <span class="err">생성</span>
+		<span class="n">ElectronicToy</span> <span class="n">toy</span> <span class="p">=</span> <span class="n">new</span> <span class="n">ElectronicToy</span><span class="p">();</span>
+
+		<span class="p">//</span><span class="err">배터리</span> <span class="err">교체</span>  
+		<span class="n">Battery</span> <span class="n">changeBattery</span> <span class="p">=</span> <span class="n">new</span> <span class="n">BatteryB</span><span class="p">();</span>
+		<span class="n">toy</span><span class="p">.</span><span class="n">setBattery</span><span class="p">(</span><span class="n">changeBattery</span><span class="p">);</span>
+
+		<span class="n">toy</span><span class="p">.</span><span class="n">showBatterySpec</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>battery name : B배터리
+battery capacity : 30
+</code></pre></div></div>
+<p>이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 <u>의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을</u> ** 의존성 주입 ** <u>이라고 한다.</u></p>
+
+</article>
+
+
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=Spring+DI&u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F17%2FSpring-DI.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=Spring+DI&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F11%2F17%2FSpring-DI.html&media=http://localhost:4000/assets/posts/1.jpg"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/spring/2018/11/17/Spring-DI.html') + '&title=Spring DI'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Jinow's blog</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/welcome/">welcome</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/jekyll/">Jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/spring/">Spring</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/java/">Java</a>
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:ca98047@gmail.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">ca98047@gmail.com</span>
+          </a>
+        </li>
+
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/ca98047/ca98047.github.io" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">ca98047</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">A simple yet classy theme for your Jekyll website or blog.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>
