@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 18 Nov 2018 01:59:03 +0900</pubDate>
-    <lastBuildDate>Sun, 18 Nov 2018 01:59:03 +0900</lastBuildDate>
+    <pubDate>Sun, 18 Nov 2018 02:00:04 +0900</pubDate>
+    <lastBuildDate>Sun, 18 Nov 2018 02:00:04 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -178,7 +178,7 @@ battery capacity : 30
 &lt;h3 id=&quot;정리&quot;&gt;정리&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;의존관계 : A가 B로 인해 영향을 받는 것 (B가 변하면 A도 변한다)&lt;/li&gt;
-  &lt;li&gt;의존성 주입 : 의존관계에 있는 객체를 변수로 받음으로 인해 응집도를 낮춤&lt;/li&gt;
+  &lt;li&gt;의존성 주입 : 의존관계에 있는 객체를 변수로 받음으로 인해 결합도를 낮춤&lt;/li&gt;
   &lt;li&gt;의존성 주입의 방법&lt;br /&gt;
 1) 생성자를 통한 주입&lt;br /&gt;
 2) setter 함수를 통한 주입&lt;/li&gt;
