@@ -180,6 +180,109 @@ public class ToyCreateExam {
 ```
 다음과 같이 A배터리와 B배터리가 존재하는 상태에서 객체를 생성할 때 원하는 배터리를 **생성자에 주입**하여서 장난감을 생성하였다.  
 
+### 1.3 스프링 컨테이너에 적용하기
+지금까지 의존성 주입이 <U>1)생성자, 2)setter</U>를 통해서 동작하는 것을 배웠다. 이번에는 컨테이너 안에서 bean 객체에 두가지 방법을 통해 DI를 적용해보도록 하겠다.
+```
+package di.xml;
+
+import di.*;
+
+public class ElectronicToy {
+	private Battery battery;
+
+	public ElectronicToy() {
+		System.out.println("toy 생성 ");
+	}
+	//생성자를 통한 의존성 주입  
+	public ElectronicToy(Battery battery) {
+		this();
+		System.out.println("생성자를 통한 의존성 주입" );
+		this.battery = battery;
+	}
+
+	//setter를 통한 의존성 주입
+	public void setBattery(Battery battery) {
+		System.out.println("setter함를 통한 의존성 주입" );
+		this.battery = battery;
+	}
+
+	//장난감이 장착한 배터리의 스팩을 보여준다.
+	public void showBatterySpec() {
+		System.out.println("battery name : " + battery.getName());
+		System.out.println("battery capacity : " + battery.getCapacity());
+	}
+
+}
+
+```
+먼저 ElectronicToy 클래스를 살펴보자. 다음과 같은 로직을 추가하였다.
+1. 생성자를 통한 주입, setter를 통한 주입 모두 가능하도록 하였다.
+2. 객체 생성 및 함수 실행 시점을 살펴보기 위해 각각의 메서드 안에 시스템 알럿을 추가하였다.  
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id = "batteryA" class = "di.BatteryA" />
+	<bean id = "batteryB" class = "di.BatteryB" />
+
+	<bean id = "constructorToy" class = "di.xml.ElectronicToy">
+		<constructor-arg ref = "batteryA"></constructor-arg>
+	</bean>
+
+	<bean id = "setterToy" class = "di.xml.ElectronicToy">
+		<property name="battery" ref = "batteryB"></property>
+	</bean>
+</beans>
+```
+1. 생성자 주입을 이용한 constructorToy bean  
+ : ```<constructor-arg>```를 이용하여 생성자를 통해 batteryA를 주입  
+2. setter 주입을 이용한 setterToy bean  
+: ```<property>```를 이용하여 setter를 통해 batteryB를 주입  
+3. 두가지 방법애 전부 적용 가능한 ElectronicToy 타입으로 정의하였다.
+
+```
+package di.xml;
+
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import di.*;
+
+public class ToyCreateExam {
+	public static void main(String[] args) {
+		//컨테이너 생성  
+		//컨테이너 리소스를 불러온다
+		GenericXmlApplicationContext ctx =
+			new GenericXmlApplicationContext("classpath:applicationContext.xml");
+	}
+}
+```
+이전 포스트에서 실습한 것처럼 ```GenericXmlApplicationContext``` 클래스를 이용하여 컨테이너 리소스를 가져온다.
+
+
+#### 실행결과
+```
+Nov 20, 2018 7:40:46 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+정보: Loading XML bean definitions from class path resource [applicationContext.xml]
+Nov 20, 2018 7:40:46 PM org.springframework.context.support.GenericXmlApplicationContext prepareRefresh
+정보: Refreshing org.springframework.context.support.GenericXmlApplicationContext@754ba872: startup date [Tue Nov 20 19:40:46 KST 2018]; root of context hierarchy
+battery 객체생성
+battery 객체생성
+toy 생성
+생성자를 통한 의존성 주입
+toy 생성
+setter함를 통한 의존성 주입
+```
+xml에서 선언한 바와 같이 각각의 객체들이 두가지 방법으로 의존성 주입이 실행되었음을 확인할 수 있다.  
+또 하나 살펴봐야 할 점은 getBean 메서드를 이용하여 bean객체를 호출하지 않았음에도 불구하고 시스템 알럿들이 실행되었다는 것이다. <U>이것은 applicationContext.xml에서 선언한 bean들이 메모리에 미리 로드 되었음을 의미한다.</U>  
+즉, 스프링에서 bean 객체는 한번만 생성이 되고 이것을 모든 쓰레드가 공유하여 사용한다. 이러한 개념을 **싱글톤** 이라고 한다.
+
+
+
 
 ### 정리  
 * 의존관계 : A가 B로 인해 영향을 받는 것 (B가 변하면 A도 변한다)  
@@ -187,5 +290,6 @@ public class ToyCreateExam {
 * 의존성 주입의 방법  
 1) 생성자를 통한 주입  
 2) setter 함수를 통한 주입  
-
-다음 시간에는 Spring Container에서 의존성 주입을 어떻게 사용하는지 살펴볼 것이다.
+* xml에서의 의존성 주입  
+1) ```<constructor-arg>``` : 생성자를 통한 주입  
+2) ```<property>``` : setter 함수를 통한 주입
