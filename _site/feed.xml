@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Nov 2018 08:22:35 +0900</pubDate>
-    <lastBuildDate>Tue, 27 Nov 2018 08:22:35 +0900</lastBuildDate>
+    <pubDate>Tue, 27 Nov 2018 19:02:02 +0900</pubDate>
+    <lastBuildDate>Tue, 27 Nov 2018 19:02:02 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -15,7 +15,13 @@
         <description>&lt;p&gt;지난 시간에 Spring DI에 대해 다루었고, 스프링 컨테이너 안에서 어떠한 방식으로 의존성 주입이 동작하는지 살펴보았다.&lt;br /&gt;
 이번 시간에는 &lt;strong&gt;어노테이션&lt;/strong&gt;을 통하여 컨테이너 안에서 의존객체를 자동으로 주입하는 방식에 대해 알아보도록 하겠다.&lt;/p&gt;
 
-&lt;h3 id=&quot;11-autowired를-통한-자동-주입&quot;&gt;1.1 @Autowired를 통한 자동 주입&lt;/h3&gt;
+&lt;h2 id=&quot;목차&quot;&gt;목차&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;#autowired를-통한-자동-주입&quot;&gt;1.1 @Autowired를 통한 자동 주입&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#resource를-통한-자동주입&quot;&gt;1.2 @Resource를 통한 자동주입&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#정리&quot;&gt;정리&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;autowired를-통한-자동-주입&quot;&gt;@Autowired를 통한 자동 주입&lt;/h3&gt;
 &lt;p&gt;@Autowired는 주입하려고 하는 객체의 &lt;strong&gt;타입&lt;/strong&gt;이 일치하는 객체를 자동으로 주입한다.&lt;br /&gt;
 지난시간에 실습하였던 constructorToy와 setterToy 빈 객체를 다시 한번 사용하도록 하겠다. 기억이 안나는 분들은 이전 post를 다시 한번 살펴보도록 한다.&lt;/p&gt;
 
@@ -87,7 +93,8 @@
 실행시켰을때 이전 포스트의 결과와 동일함을 확인할 수 있다.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;12-resource-를-통한-자동주입&quot;&gt;1.2 @Resource 를 통한 자동주입&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;resource를-통한-자동주입&quot;&gt;@Resource를 통한 자동주입&lt;/h3&gt;
 &lt;p&gt;@Resource는 주입하려고 하는 객체의 &lt;strong&gt;이름&lt;/strong&gt;이 일치하는 객체를 자동으로 주입한다.&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
 
@@ -182,6 +189,7 @@ setter함수를 통한 의존성 주입
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;다음과 같이 컨테이너 리소스를 불러왔을때 setterToy 객체가 생성되었고 setter함수를 통한 의존성 주입이 실행됨을 확인할 수 있다.&lt;/p&gt;
 
+&lt;hr /&gt;
 &lt;h3 id=&quot;정리&quot;&gt;정리&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Autowired : 생성자, 프로퍼티 어디서나 사용 가능, 객체의 타입을 보고 찾아냄&lt;/li&gt;
@@ -199,9 +207,17 @@ setter함수를 통한 의존성 주입
     
       <item>
         <title>Spring DI</title>
-        <description>&lt;h3 id=&quot;1-의존성-주입&quot;&gt;1. 의존성 주입&lt;/h3&gt;
-&lt;p&gt;DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다.&lt;/p&gt;
+        <description>&lt;p&gt;DI란 Dependency Injection의 줄임말, 즉 의존성을 주입한다는 것을 의미한다. 그렇다면 의존성이라는 것은 무엇일까? 의존관계는 말 그대로 객체와 객체 간에 의존하고 있음. 즉, 객체 B가 변하면 객체 A도 영향을 받는 것을 의미한다.&lt;/p&gt;
 
+&lt;h3 id=&quot;목차&quot;&gt;목차&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;#의존성-주입&quot;&gt;1.의존성 주입&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#setter-함수를-통한-의존성-주입&quot;&gt;1.1 setter 함수를 통한 의존성 주입&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#생성자 함수를 통한 의존성 주입&quot;&gt;1.2 생성자 함수를 통한 의존성 주입&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#스프링 컨테이너에 적용하기&quot;&gt;1.3 스프링 컨테이너에 적용하기&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;#정리&quot;&gt;정리&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;의존성-주입&quot;&gt;의존성 주입&lt;/h3&gt;
 &lt;p&gt;다음 코드를 통해 객체간의 의존관계가 무엇인지를 알아보도록 하자.&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -250,7 +266,8 @@ setter함수를 통한 의존성 주입
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;전자 장난감을 뜻하는 ElectoricToy 클래스가 있다고 가정하자. 전자 장난감은 배터리가 있어야 돌아가기 때문에 배터리를 필요로 하고, 해당 클래스는 A배터리로 사용하고 있다. 따라서 ElectroicToy 클래스와 Battery 클래스는 서로에 대해 의존하고 있고, 우리는 이것을 &lt;strong&gt;의존관계&lt;/strong&gt;를 갖고 있다고 한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;11-setter-함수를-통한-의존성-주입&quot;&gt;1.1 setter 함수를 통한 의존성 주입&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;setter-함수를-통한-의존성-주입&quot;&gt;setter 함수를 통한 의존성 주입&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -315,7 +332,8 @@ battery capacity : 30
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;이번에는 배터리를 B배터리로 교체하는데 성공하였다. 이처럼 &lt;u&gt;의존관계에 있는 배터리를 직접 객체에 주입하는 방식으로 속성을 변경하는 것을&lt;/u&gt; &lt;strong&gt;의존성 주입&lt;/strong&gt;이라고 한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;12-생성자-함수를-통한-의존성-주입&quot;&gt;1.2 생성자 함수를 통한 의존성 주입&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;생성자-함수를-통한-의존성-주입&quot;&gt;생성자 함수를 통한 의존성 주입&lt;/h3&gt;
 &lt;p&gt;의존성 주입은 이전과 같이 &lt;strong&gt;setter&lt;/strong&gt; 함수를 이용해도 가능하지만 &lt;strong&gt;생성자&lt;/strong&gt;를 이용해서도 가능하다. 이번에는 장난감을 만들때 이미 만들어진 배터리 중 원하는 배터리를 선택한다고 가정하자.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -362,7 +380,9 @@ battery capacity : 30
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;다음과 같이 A배터리와 B배터리가 존재하는 상태에서 객체를 생성할 때 원하는 배터리를 &lt;strong&gt;생성자에 주입&lt;/strong&gt;하여서 장난감을 생성하였다.&lt;/p&gt;
 
-&lt;h3 id=&quot;13-스프링-컨테이너에-적용하기&quot;&gt;1.3 스프링 컨테이너에 적용하기&lt;/h3&gt;
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;스프링-컨테이너에-적용하기&quot;&gt;스프링 컨테이너에 적용하기&lt;/h3&gt;
 &lt;p&gt;지금까지 의존성 주입이 &lt;u&gt;1)생성자, 2)setter&lt;/u&gt;를 통해서 동작하는 것을 배웠다. 이번에는 컨테이너 안에서 bean 객체에 두가지 방법을 통해 DI를 적용해보도록 하겠다.&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;di&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -469,6 +489,8 @@ setter함를 통한 의존성 주입
 &lt;p&gt;xml에서 선언한 바와 같이 각각의 객체들이 두가지 방법으로 의존성 주입이 실행되었음을 확인할 수 있다.&lt;br /&gt;
 또 하나 살펴봐야 할 점은 getBean 메서드를 이용하여 bean객체를 호출하지 않았음에도 불구하고 시스템 알럿들이 실행되었다는 것이다. &lt;u&gt;이것은 applicationContext.xml에서 선언한 bean들이 메모리에 미리 로드 되었음을 의미한다.&lt;/u&gt;&lt;br /&gt;
 즉, 스프링에서 bean 객체는 한번만 생성이 되고 이것을 모든 쓰레드가 공유하여 사용한다. 이러한 개념을 &lt;strong&gt;싱글톤&lt;/strong&gt; 이라고 한다.&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h3 id=&quot;정리&quot;&gt;정리&lt;/h3&gt;
 &lt;ul&gt;
