@@ -1,0 +1,24 @@
+---
+title: Spring 어노테이션 정리
+author: jinow
+cover: "/assets/posts/1.jpg"
+categories: Spring
+layout: post
+date: '2018-11-28 23:18:25'
+---
+
+**@Configuration**  
+: 스프링 컨테이너 안에서 사용할 리소스 클래스임을 명시
+
+**@Bean**  
+: 스프링 컨테이너 안에서 관리될 빈 객체임을 명시
+
+**@Autowired**  
+: 자동주입
+
+**@import**  
+: Configuration 어노테이션이 붙은 클래스를 import
+
+
+
+---

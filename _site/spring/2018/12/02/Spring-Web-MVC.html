@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Java Annotation</title>
-  <meta name="description" content="  어노테이션은 Java의 메타데이터를 의미한다.">
+  <title>Spring Web MVC</title>
+  <meta name="description" content="Spring에서 Web MVC 를 구현하기 전에 Dispatcher Servlet의 동작방식에 대해 알아보자.">
   
   <meta name="author" content="jinow">
   <meta name="copyright" content="&copy; jinow 2018">
@@ -41,10 +41,10 @@
 
   
   <!-- Facebook OGP cards -->
-  <meta property="og:description" content="  어노테이션은 Java의 메타데이터를 의미한다." />
+  <meta property="og:description" content="Spring에서 Web MVC 를 구현하기 전에 Dispatcher Servlet의 동작방식에 대해 알아보자." />
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="Jinow's blog" />
-  <meta property="og:title" content="Java Annotation" />
+  <meta property="og:title" content="Spring Web MVC" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/posts/1.jpg" />
   <meta property="og:image:type" content="image/png" />
@@ -55,8 +55,8 @@
   
   <!-- Twitter: card tags -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Java Annotation">
-  <meta name="twitter:description" content="  어노테이션은 Java의 메타데이터를 의미한다.">
+  <meta name="twitter:title" content="Spring Web MVC">
+  <meta name="twitter:description" content="Spring에서 Web MVC 를 구현하기 전에 Dispatcher Servlet의 동작방식에 대해 알아보자.">
   <meta name="twitter:image" content="http://localhost:4000/assets/posts/1.jpg">
   <meta name="twitter:url" content="http://localhost:4000">
   
@@ -65,7 +65,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/java/2018/11/07/Java-Annotation.html">
+  <link rel="canonical" href="http://localhost:4000/spring/2018/12/02/Spring-Web-MVC.html">
   <link rel="alternate" type="application/rss+xml" title="Jinow's blog" href="http://localhost:4000/feed.xml" />
 </head>
 
@@ -120,10 +120,6 @@
           
         
           
-          <li class="nav-link"><a href="/category/java/">Java</a>
-          
-        
-          
         
           
         
@@ -141,7 +137,7 @@
 <div class="post-header-container has-cover" style="background-image: url(/assets/posts/1.jpg);">
   <div class="scrim has-cover">
     <header class="post-header">
-      <h1 class="title">Java Annotation</h1>
+      <h1 class="title">Spring Web MVC</h1>
       <p class="info">by <strong>jinow</strong></p>
     </header>
   </div>
@@ -152,20 +148,42 @@
 
 
 <section class="post-meta">
-  <div class="post-date">November 7, 2018</div>
+  <div class="post-date">December 2, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/Java">Java</a>
+    <a href="/category/Spring">Spring</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <blockquote>
-  <p>어노테이션은 Java의 <strong>메타데이터</strong>를 의미한다.</p>
+  <hr />
+<p>Spring에서 Web MVC 를 구현하기 전에 Dispatcher Servlet의 동작방식에 대해 알아보자.</p>
+
+<p><img src="/assets/posts/dps.png" alt="dispatcher servlet architecture" /></p>
+
+<ol>
+  <li>요청을 받는다.</li>
+  <li><code class="highlighter-rouge">Handler Mapping</code>을 통해 적합한 컨트롤러를 찾는다. 없을 시 자원을 호출</li>
+  <li><code class="highlighter-rouge"> DispatcherServlet</code>은 적합한 컨트롤러 정보를 전달한다.</li>
+  <li><code class="highlighter-rouge">Handler Adapter</code>를 통해 적합한 메서드를 호출하여 로직을 수행한다.</li>
+  <li>business 로직을 수행 후 결과물을 model 객체에 저장 후 결과물을 보여줄 화면이름을 반환한다.</li>
+  <li><code class="highlighter-rouge">ViewResolver</code>를 통해 해당 화면의 경로를 찾는다.<br />
+7.<code class="highlighter-rouge"> DispatcherServlet</code>은 해당 화면에 로직결과물을 전달한다.</li>
+  <li>data를 랜더링 한 후 response 반환</li>
+</ol>
+
+<p>다음과 같이 Dispatcher Servlet은 각각의 역할에 따라 나눠진 객체들(Controller, Service, DAO, View … etc)이 무리 없이 본인의 역할을 수행하도록 결과물들을 전달해 주는 역할을 한다.</p>
+
+<blockquote>
+  <p>따라서 개발자는 Business logic을 구현하는 것에만 집중할 수 있다.</p>
 </blockquote>
+
+<p>그렇다면 DispatcherServlet을 통한 Web MVC를 직접 구현해보도록 하자.</p>
+
+<h4 id="1-dispatcherservlet-설정">1. DispatcherServlet 설정</h4>
 
 </article>
 
@@ -183,7 +201,7 @@
     
     
     
-      <a href="//www.facebook.com/sharer.php?t=Java+Annotation&u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F2018%2F11%2F07%2FJava-Annotation.html"
+      <a href="//www.facebook.com/sharer.php?t=Spring+Web+MVC&u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F12%2F02%2FSpring-Web-MVC.html"
         onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
         <i class="fa fa-facebook-square fa-lg"></i>
       </a>
@@ -227,7 +245,7 @@
     
     
     
-      <a href="//www.pinterest.com/pin/create/button/?description=Java+Annotation&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F2018%2F11%2F07%2FJava-Annotation.html&media=http://localhost:4000/assets/posts/1.jpg"
+      <a href="//www.pinterest.com/pin/create/button/?description=Spring+Web+MVC&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2018%2F12%2F02%2FSpring-Web-MVC.html&media=http://localhost:4000/assets/posts/1.jpg"
         onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
         <i class="fa fa-pinterest-square fa-lg"></i>
       </a>
@@ -296,7 +314,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/java/2018/11/07/Java-Annotation.html') + '&title=Java Annotation'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/spring/2018/12/02/Spring-Web-MVC.html') + '&title=Spring Web MVC'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -364,10 +382,6 @@
         
         
           <li class="nav-link"><a href="/category/spring/">Spring</a>
-        
-        
-        
-          <li class="nav-link"><a href="/category/java/">Java</a>
         
         
         

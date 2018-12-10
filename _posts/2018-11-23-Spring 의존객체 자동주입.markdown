@@ -84,7 +84,7 @@ public class ElectronicToy {
 }
 ```
 1. 생성자 주입 : 생성자 함수에 @Autowired 추가
-2. setter 주입 : 속성, 및 setter 함수에 @Autowired 추가
+2. setter 주입 : 속성, 및 setter 함수에 @Autowired 추가  
 실행시켰을때 이전 포스트의 결과와 동일함을 확인할 수 있다.
 
 ---
@@ -254,3 +254,5 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 * Resource :
   - 객체의 **이름**을 보고 찾아냄
   - 프로퍼티에서만 사용가능
+* Qualifier :
+  - 동일한 타입의 객체가 여러 개일때 이름을 명시하여 주입할 객체를 구분
