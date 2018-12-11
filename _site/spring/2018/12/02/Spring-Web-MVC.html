@@ -184,6 +184,88 @@
 <p>그렇다면 DispatcherServlet을 통한 Web MVC를 직접 구현해보도록 하자.</p>
 
 <h4 id="1-dispatcherservlet-설정">1. DispatcherServlet 설정</h4>
+<p>모든 웹애플리케이션이 반드시 가지고 있는 <code class="highlighter-rouge">web.xml</code>에 DispatcherServlet을 정의해준다. <code class="highlighter-rouge">web.xml</code>에 명시된 설정들은 웹애플리케이션 시작시 메모리에 로딩된다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;web-app</span> <span class="na">version=</span><span class="s">"2.5"</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/javaee"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span><span class="nt">&gt;</span>
+
+	<span class="c">&lt;!-- The definition of the Root Spring Container shared by all Servlets and Filters --&gt;</span>
+	<span class="nt">&lt;context-param&gt;</span>
+		<span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+		<span class="nt">&lt;param-value&gt;</span>/WEB-INF/spring/root-context.xml<span class="nt">&lt;/param-value&gt;</span>
+	<span class="nt">&lt;/context-param&gt;</span>
+
+	<span class="c">&lt;!-- Creates the Spring Container shared by all Servlets and Filters --&gt;</span>
+	<span class="nt">&lt;listener&gt;</span>
+		<span class="nt">&lt;listener-class&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="nt">&lt;/listener-class&gt;</span>
+	<span class="nt">&lt;/listener&gt;</span>
+
+	<span class="c">&lt;!-- Processes application requests --&gt;</span>
+	<span class="nt">&lt;servlet&gt;</span>
+		<span class="nt">&lt;servlet-name&gt;</span>appServlet<span class="nt">&lt;/servlet-name&gt;</span>
+		<span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+		<span class="nt">&lt;init-param&gt;</span>
+			<span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+			<span class="nt">&lt;param-value&gt;</span>/WEB-INF/spring/servlet-context.xml<span class="nt">&lt;/param-value&gt;</span>
+		<span class="nt">&lt;/init-param&gt;</span>
+		<span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+	<span class="nt">&lt;/servlet&gt;</span>
+	<span class="nt">&lt;servlet-mapping&gt;</span>
+		<span class="nt">&lt;servlet-name&gt;</span>appServlet<span class="nt">&lt;/servlet-name&gt;</span>
+		<span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+	<span class="nt">&lt;/servlet-mapping&gt;</span>
+
+	<span class="nt">&lt;filter&gt;</span>
+	    <span class="nt">&lt;filter-name&gt;</span>CharacterEncodingFilter<span class="nt">&lt;/filter-name&gt;</span>
+	    <span class="nt">&lt;filter-class&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="nt">&lt;/filter-class&gt;</span>
+	    <span class="nt">&lt;init-param&gt;</span>
+	      <span class="nt">&lt;param-name&gt;</span>encoding<span class="nt">&lt;/param-name&gt;</span>
+	      <span class="nt">&lt;param-value&gt;</span>UTF-8<span class="nt">&lt;/param-value&gt;</span>
+	    <span class="nt">&lt;/init-param&gt;</span>
+	    <span class="nt">&lt;init-param&gt;</span>
+	      <span class="nt">&lt;param-name&gt;</span>forceEncoding<span class="nt">&lt;/param-name&gt;</span>
+	      <span class="nt">&lt;param-value&gt;</span>true<span class="nt">&lt;/param-value&gt;</span>
+	    <span class="nt">&lt;/init-param&gt;</span>
+	<span class="nt">&lt;/filter&gt;</span>
+	<span class="nt">&lt;filter-mapping&gt;</span>
+		<span class="nt">&lt;filter-name&gt;</span>CharacterEncodingFilter<span class="nt">&lt;/filter-name&gt;</span>
+		<span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+	<span class="nt">&lt;/filter-mapping&gt;</span>
+
+<span class="nt">&lt;/web-app&gt;</span>
+</code></pre></div></div>
+<p>dispatcherServlet에 대한 설정정보들은 xml파일로 분리하여 명시한다. sts 플러그인을 통해 spring mvc project 생성 시, /WEB-INF/spring/servlet-context.xml 으로 자동 생성된다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/mvc"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xmlns:beans=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+	<span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span><span class="nt">&gt;</span>
+
+	<span class="c">&lt;!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure --&gt;</span>
+
+	<span class="c">&lt;!-- Enables the Spring MVC @Controller programming model --&gt;</span>
+	<span class="nt">&lt;annotation-driven</span> <span class="nt">/&gt;</span>
+
+	<span class="c">&lt;!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory --&gt;</span>
+	<span class="nt">&lt;resources</span> <span class="na">mapping=</span><span class="s">"/resources/**"</span> <span class="na">location=</span><span class="s">"/resources/"</span> <span class="nt">/&gt;</span>
+
+	<span class="c">&lt;!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory --&gt;</span>
+	<span class="nt">&lt;beans:bean</span> <span class="na">class=</span><span class="s">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;beans:property</span> <span class="na">name=</span><span class="s">"prefix"</span> <span class="na">value=</span><span class="s">"/WEB-INF/views/"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;beans:property</span> <span class="na">name=</span><span class="s">"suffix"</span> <span class="na">value=</span><span class="s">".jsp"</span> <span class="nt">/&gt;</span>
+	<span class="nt">&lt;/beans:bean&gt;</span>
+
+	<span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.jinow"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans:beans&gt;</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">&lt;annotation-driven /&gt;</code> : 어노테이션 사용가능<br />
+<code class="highlighter-rouge">&lt;resources&gt;</code> : 정적자원에 대한 경로 설정<br />
+<code class="highlighter-rouge">&lt;context:component-scan&gt;</code> : 해당 패키지 내 경로에 있는 클래스들을 스캔하여 @Component 어노테이션이 있는 클래스들을 자동으로 bean객체로 등록시켜준다.<br />
+<code class="highlighter-rouge">ViewResolver</code> : 컨트롤러가 찾으려는 view의 full 경로를 찾아준다.</p>
 
 </article>
 
