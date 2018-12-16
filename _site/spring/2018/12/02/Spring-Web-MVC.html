@@ -170,21 +170,27 @@
   <li><code class="highlighter-rouge"> DispatcherServlet</code>은 적합한 컨트롤러 정보를 전달한다.</li>
   <li><code class="highlighter-rouge">Handler Adapter</code>를 통해 적합한 메서드를 호출하여 로직을 수행한다.</li>
   <li>business 로직을 수행 후 결과물을 model 객체에 저장 후 결과물을 보여줄 화면이름을 반환한다.</li>
-  <li><code class="highlighter-rouge">ViewResolver</code>를 통해 해당 화면의 경로를 찾는다.<br />
-7.<code class="highlighter-rouge"> DispatcherServlet</code>은 해당 화면에 로직결과물을 전달한다.</li>
+  <li><code class="highlighter-rouge">ViewResolver</code>를 통해 해당 화면의 경로를 찾는다.</li>
+  <li><code class="highlighter-rouge"> DispatcherServlet</code>은 해당 화면에 로직결과물을 전달한다.</li>
   <li>data를 랜더링 한 후 response 반환</li>
 </ol>
 
 <p>다음과 같이 Dispatcher Servlet은 각각의 역할에 따라 나눠진 객체들(Controller, Service, DAO, View … etc)이 무리 없이 본인의 역할을 수행하도록 결과물들을 전달해 주는 역할을 한다.</p>
 
 <blockquote>
-  <p>따라서 개발자는 Business logic을 구현하는 것에만 집중할 수 있다.</p>
+  <p><strong>따라서 개발자는 Business logic을 구현하는 것에만 집중할 수 있다.</strong></p>
 </blockquote>
 
 <p>그렇다면 DispatcherServlet을 통한 Web MVC를 직접 구현해보도록 하자.</p>
 
 <h4 id="1-dispatcherservlet-설정">1. DispatcherServlet 설정</h4>
-<p>모든 웹애플리케이션이 반드시 가지고 있는 <code class="highlighter-rouge">web.xml</code>에 DispatcherServlet을 정의해준다. <code class="highlighter-rouge">web.xml</code>에 명시된 설정들은 웹애플리케이션 시작시 메모리에 로딩된다.</p>
+<p>모든 웹애플리케이션이 반드시 가지고 있는 <code class="highlighter-rouge">web.xml</code>에 DispatcherServlet을 정의해준다.<br />
+<code class="highlighter-rouge">web.xml</code>에 명시된 설정들은 웹애플리케이션 시작시 메모리에 로딩된다.</p>
+
+<ul>
+  <li>web.xml</li>
+</ul>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;web-app</span> <span class="na">version=</span><span class="s">"2.5"</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/javaee"</span>
 	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
@@ -235,7 +241,13 @@
 
 <span class="nt">&lt;/web-app&gt;</span>
 </code></pre></div></div>
-<p>dispatcherServlet에 대한 설정정보들은 xml파일로 분리하여 명시한다. sts 플러그인을 통해 spring mvc project 생성 시, /WEB-INF/spring/servlet-context.xml 으로 자동 생성된다.</p>
+<p>dispatcherServlet에 대한 설정정보들은 xml파일로 분리하여 명시한다.<br />
+sts 플러그인을 통해 spring mvc project 생성 시, /WEB-INF/spring/servlet-context.xml 으로 자동 생성된다.</p>
+
+<ul>
+  <li>servlet-context.xml</li>
+</ul>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;beans:beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/mvc"</span>
 	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
@@ -262,10 +274,120 @@
 	<span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.jinow"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/beans:beans&gt;</span>
 </code></pre></div></div>
-<p><code class="highlighter-rouge">&lt;annotation-driven /&gt;</code> : 어노테이션 사용가능<br />
-<code class="highlighter-rouge">&lt;resources&gt;</code> : 정적자원에 대한 경로 설정<br />
-<code class="highlighter-rouge">&lt;context:component-scan&gt;</code> : 해당 패키지 내 경로에 있는 클래스들을 스캔하여 @Component 어노테이션이 있는 클래스들을 자동으로 bean객체로 등록시켜준다.<br />
-<code class="highlighter-rouge">ViewResolver</code> : 컨트롤러가 찾으려는 view의 full 경로를 찾아준다.</p>
+<ul>
+  <li><code class="highlighter-rouge">&lt;annotation-driven /&gt;</code> : 어노테이션 사용가능</li>
+  <li><code class="highlighter-rouge">&lt;resources&gt;</code> : 정적자원에 대한 경로 설정</li>
+  <li><code class="highlighter-rouge">&lt;context:component-scan&gt;</code> : 해당 패키지 내 경로에 있는 클래스들을 스캔하여  @Component 어노테이션이 있는 클래스들을 자동으로 bean객체로 등록시켜준다.</li>
+  <li><code class="highlighter-rouge">ViewResolver</code> : view의 특정 경로를 지정</li>
+</ul>
+
+<h3 id="2business-logic-구현">2.Business logic 구현</h3>
+<p>DispatcherServlet은 모든 요청을 직접 처리해주기 때문에 개발자가 서블릿의 생명주기, url 매핑에 대한 처리를 해줄 필요가 없다.
+따라서 DispatcherServlet에 대한 설정이 완료되었으므로 이제 Controller, Service, Dao …에 해당하는 business logic을 구현해보도록 한다.</p>
+
+<h4 id="2-1-controller-구현">2-1. Controller 구현</h4>
+<p>Controller는 DispatcherServlet을 통해 처음으로 요청이 들어오는 곳이다. <code class="highlighter-rouge">HomeController.java</code>를 통해 간단히 살펴보도록 하자.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Controller
+public class HomeController {
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate );
+
+		return "home";
+	}
+}
+</code></pre></div></div>
+<ul>
+  <li>@Controller : 컨테이너에게 Controller로 사용될 객체임을 명시</li>
+  <li>@RequestMapping : 해당 url에 사용될 메서드임을 명시, GET/POST 방식에 대해 명시</li>
+  <li>model.addAttribute : View에 전달할 객체들을 명시</li>
+  <li>return “home” : 해당 View의 이름을 명시</li>
+</ul>
+
+<p><img src="/assets/posts/controller1.png" alt="" />
+다음과 같이 Request Parameter를 VO 객체로 넘기는게 가능하다. 자세한 내용은 <strong>Spring Command Object</strong>에 대해 살펴보도록 한다.</p>
+
+<p>이제 실습을 통해 mvc 패턴을 통한 기능을 직접 구현해보도록 하자. 회원가입 양식의 맞게 작성된 데이터를 전달받아 서비스 객체를 통해 회원 등록을 한 뒤 결과 값을 출력해 주는 실습을 할것이다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Controller
+@RequestMapping("/member") // (1)
+public class MemberController {
+
+	@Autowired // (2)
+	MemberService service;
+
+	@ModelAttribute("serverTime") // (3)
+	public String getServerTime(Locale locale) {
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		return dateFormat.format(date);
+	}
+
+	@RequestMapping(value = "/memJoin", method = RequestMethod.POST)
+	public String memJoin(Member member) {
+
+		service.memberRegister(member);
+
+		return "memJoinOk";
+	}
+}
+</code></pre></div></div>
+<p>(1) 해당 컨트롤러에 <code class="highlighter-rouge">RequestMapping</code> 어노테이션을 사용함으로써 /member 하위의 url은 모두 MemberController를 경유함을 명시한다.<br />
+(2) 컨트롤러 안에서 사용할 Service객체를 자동주입한다. 해당 서비스 클래스는 bean객체로 선언이 되어있어야 한다. (xml을 통한 주입이든, 어노테이션을 통한 주입이든)<br />
+(3) 해당 메서드에 <code class="highlighter-rouge">ModelAttribute</code> 어노테이션을 사용함으로써 리턴 값은 serverTime의 이름으로 Model객체의 속성으로 자동 추가될 것이다.</p>
+
+<h3 id="3-view-구현">3. View 구현</h3>
+<p>business logic 구현을 완료하였으니 이제 마지막으로 결과값을 화면에 출력하는 일만 남았다. 앞서 구현한 회원 등록 로직을 통해 등록한 회원의 정보를 화면에 보여주는 것을 실습해보도록 하자.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="err">%@</span> <span class="na">taglib</span> <span class="na">uri=</span><span class="s">"http://java.sun.com/jsp/jstl/core"</span> <span class="na">prefix=</span><span class="s">"c"</span> <span class="err">%</span><span class="nt">&gt;</span>
+<span class="nt">&lt;</span><span class="err">%@</span> <span class="na">page</span> <span class="na">session=</span><span class="s">"false"</span> <span class="err">%</span><span class="nt">&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+	<span class="nt">&lt;title&gt;</span>Home<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+	<span class="nt">&lt;h1&gt;</span> memJoinOk <span class="nt">&lt;/h1&gt;</span>
+
+	ID : ${member.memId} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	PW : ${member.memPw} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	Mail : ${member.memMail} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	PHONE1 : ${member.memPhones[0].memPhone1} - ${member.memPhones[0].memPhone2} - ${member.memPhones[0].memPhone3} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	PHONE2 : ${member.memPhones[1].memPhone1} - ${member.memPhones[1].memPhone2} - ${member.memPhones[1].memPhone3} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	AGE : ${member.memAge} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	ADULT : ${member.memAdult} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	GENDER : ${member.memGender} <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	FAVORITE SPORT :
+	<span class="nt">&lt;c:forEach</span> <span class="na">var=</span><span class="s">"fSport"</span> <span class="na">items=</span><span class="s">"${member.memFSports}"</span><span class="nt">&gt;</span>
+		${fSport},
+	<span class="nt">&lt;/c:forEach&gt;</span> <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+
+	<span class="nt">&lt;P&gt;</span>  The time on the server is ${serverTime}. <span class="nt">&lt;/P&gt;</span>
+
+	<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/lec19/resources/html/memJoin.html"</span><span class="nt">&gt;</span> Go MemberJoin <span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+<ul>
+  <li>Spring command Object를 랜더링 하기 위해 <code class="highlighter-rouge">jstl</code> 태그를 사용한다.</li>
+  <li>객체명은 default로 member 이고 변경이 필요할시 <code class="highlighter-rouge">ModelAttribute</code> 어노테이션을 사용한다.</li>
+  <li><code class="highlighter-rouge">ModelAttribute</code> 어노테이션이 붙여진 메서드의 리턴값인 serverTime 변수가 특별한 선언 없이 사용되고 있음을 확인할 수 있다.</li>
+</ul>
 
 </article>
 

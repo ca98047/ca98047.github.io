@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Dec 2018 23:37:22 +0900</pubDate>
-    <lastBuildDate>Tue, 11 Dec 2018 23:37:22 +0900</lastBuildDate>
+    <pubDate>Sun, 16 Dec 2018 21:51:56 +0900</pubDate>
+    <lastBuildDate>Sun, 16 Dec 2018 21:51:56 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -23,21 +23,27 @@
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; DispatcherServlet&lt;/code&gt;은 적합한 컨트롤러 정보를 전달한다.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Handler Adapter&lt;/code&gt;를 통해 적합한 메서드를 호출하여 로직을 수행한다.&lt;/li&gt;
   &lt;li&gt;business 로직을 수행 후 결과물을 model 객체에 저장 후 결과물을 보여줄 화면이름을 반환한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ViewResolver&lt;/code&gt;를 통해 해당 화면의 경로를 찾는다.&lt;br /&gt;
-7.&lt;code class=&quot;highlighter-rouge&quot;&gt; DispatcherServlet&lt;/code&gt;은 해당 화면에 로직결과물을 전달한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ViewResolver&lt;/code&gt;를 통해 해당 화면의 경로를 찾는다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt; DispatcherServlet&lt;/code&gt;은 해당 화면에 로직결과물을 전달한다.&lt;/li&gt;
   &lt;li&gt;data를 랜더링 한 후 response 반환&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;다음과 같이 Dispatcher Servlet은 각각의 역할에 따라 나눠진 객체들(Controller, Service, DAO, View … etc)이 무리 없이 본인의 역할을 수행하도록 결과물들을 전달해 주는 역할을 한다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;따라서 개발자는 Business logic을 구현하는 것에만 집중할 수 있다.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;따라서 개발자는 Business logic을 구현하는 것에만 집중할 수 있다.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;그렇다면 DispatcherServlet을 통한 Web MVC를 직접 구현해보도록 하자.&lt;/p&gt;
 
 &lt;h4 id=&quot;1-dispatcherservlet-설정&quot;&gt;1. DispatcherServlet 설정&lt;/h4&gt;
-&lt;p&gt;모든 웹애플리케이션이 반드시 가지고 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;에 DispatcherServlet을 정의해준다. &lt;code class=&quot;highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;에 명시된 설정들은 웹애플리케이션 시작시 메모리에 로딩된다.&lt;/p&gt;
+&lt;p&gt;모든 웹애플리케이션이 반드시 가지고 있는 &lt;code class=&quot;highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;에 DispatcherServlet을 정의해준다.&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;에 명시된 설정들은 웹애플리케이션 시작시 메모리에 로딩된다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;web.xml&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;web-app&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2.5&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://java.sun.com/xml/ns/javaee&quot;&lt;/span&gt;
 	&lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
@@ -88,7 +94,13 @@
 
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-app&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;dispatcherServlet에 대한 설정정보들은 xml파일로 분리하여 명시한다. sts 플러그인을 통해 spring mvc project 생성 시, /WEB-INF/spring/servlet-context.xml 으로 자동 생성된다.&lt;/p&gt;
+&lt;p&gt;dispatcherServlet에 대한 설정정보들은 xml파일로 분리하여 명시한다.&lt;br /&gt;
+sts 플러그인을 통해 spring mvc project 생성 시, /WEB-INF/spring/servlet-context.xml 으로 자동 생성된다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;servlet-context.xml&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;beans:beans&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.springframework.org/schema/mvc&quot;&lt;/span&gt;
 	&lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
@@ -115,10 +127,120 @@
 	&lt;span class=&quot;nt&quot;&gt;&amp;lt;context:component-scan&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;base-package=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.jinow&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/beans:beans&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;annotation-driven /&amp;gt;&lt;/code&gt; : 어노테이션 사용가능&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;resources&amp;gt;&lt;/code&gt; : 정적자원에 대한 경로 설정&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;context:component-scan&amp;gt;&lt;/code&gt; : 해당 패키지 내 경로에 있는 클래스들을 스캔하여 @Component 어노테이션이 있는 클래스들을 자동으로 bean객체로 등록시켜준다.&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;ViewResolver&lt;/code&gt; : 컨트롤러가 찾으려는 view의 full 경로를 찾아준다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;annotation-driven /&amp;gt;&lt;/code&gt; : 어노테이션 사용가능&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;resources&amp;gt;&lt;/code&gt; : 정적자원에 대한 경로 설정&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;context:component-scan&amp;gt;&lt;/code&gt; : 해당 패키지 내 경로에 있는 클래스들을 스캔하여  @Component 어노테이션이 있는 클래스들을 자동으로 bean객체로 등록시켜준다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ViewResolver&lt;/code&gt; : view의 특정 경로를 지정&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2business-logic-구현&quot;&gt;2.Business logic 구현&lt;/h3&gt;
+&lt;p&gt;DispatcherServlet은 모든 요청을 직접 처리해주기 때문에 개발자가 서블릿의 생명주기, url 매핑에 대한 처리를 해줄 필요가 없다.
+따라서 DispatcherServlet에 대한 설정이 완료되었으므로 이제 Controller, Service, Dao …에 해당하는 business logic을 구현해보도록 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-1-controller-구현&quot;&gt;2-1. Controller 구현&lt;/h4&gt;
+&lt;p&gt;Controller는 DispatcherServlet을 통해 처음으로 요청이 들어오는 곳이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;HomeController.java&lt;/code&gt;를 통해 간단히 살펴보도록 하자.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
+public class HomeController {
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = &quot;/&quot;, method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info(&quot;Welcome home! The client locale is {}.&quot;, locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute(&quot;serverTime&quot;, formattedDate );
+
+		return &quot;home&quot;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;@Controller : 컨테이너에게 Controller로 사용될 객체임을 명시&lt;/li&gt;
+  &lt;li&gt;@RequestMapping : 해당 url에 사용될 메서드임을 명시, GET/POST 방식에 대해 명시&lt;/li&gt;
+  &lt;li&gt;model.addAttribute : View에 전달할 객체들을 명시&lt;/li&gt;
+  &lt;li&gt;return “home” : 해당 View의 이름을 명시&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/controller1.png&quot; alt=&quot;&quot; /&gt;
+다음과 같이 Request Parameter를 VO 객체로 넘기는게 가능하다. 자세한 내용은 &lt;strong&gt;Spring Command Object&lt;/strong&gt;에 대해 살펴보도록 한다.&lt;/p&gt;
+
+&lt;p&gt;이제 실습을 통해 mvc 패턴을 통한 기능을 직접 구현해보도록 하자. 회원가입 양식의 맞게 작성된 데이터를 전달받아 서비스 객체를 통해 회원 등록을 한 뒤 결과 값을 출력해 주는 실습을 할것이다.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
+@RequestMapping(&quot;/member&quot;) // (1)
+public class MemberController {
+
+	@Autowired // (2)
+	MemberService service;
+
+	@ModelAttribute(&quot;serverTime&quot;) // (3)
+	public String getServerTime(Locale locale) {
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		return dateFormat.format(date);
+	}
+
+	@RequestMapping(value = &quot;/memJoin&quot;, method = RequestMethod.POST)
+	public String memJoin(Member member) {
+
+		service.memberRegister(member);
+
+		return &quot;memJoinOk&quot;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;(1) 해당 컨트롤러에 &lt;code class=&quot;highlighter-rouge&quot;&gt;RequestMapping&lt;/code&gt; 어노테이션을 사용함으로써 /member 하위의 url은 모두 MemberController를 경유함을 명시한다.&lt;br /&gt;
+(2) 컨트롤러 안에서 사용할 Service객체를 자동주입한다. 해당 서비스 클래스는 bean객체로 선언이 되어있어야 한다. (xml을 통한 주입이든, 어노테이션을 통한 주입이든)&lt;br /&gt;
+(3) 해당 메서드에 &lt;code class=&quot;highlighter-rouge&quot;&gt;ModelAttribute&lt;/code&gt; 어노테이션을 사용함으로써 리턴 값은 serverTime의 이름으로 Model객체의 속성으로 자동 추가될 것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-view-구현&quot;&gt;3. View 구현&lt;/h3&gt;
+&lt;p&gt;business logic 구현을 완료하였으니 이제 마지막으로 결과값을 화면에 출력하는 일만 남았다. 앞서 구현한 회원 등록 로직을 통해 등록한 회원의 정보를 화면에 보여주는 것을 실습해보도록 하자.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%@&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;taglib&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uri=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://java.sun.com/jsp/jstl/core&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;prefix=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;c&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%@&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;page&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;session=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;false&quot;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Home&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt; memJoinOk &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+
+	ID : ${member.memId} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	PW : ${member.memPw} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	Mail : ${member.memMail} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	PHONE1 : ${member.memPhones[0].memPhone1} - ${member.memPhones[0].memPhone2} - ${member.memPhones[0].memPhone3} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	PHONE2 : ${member.memPhones[1].memPhone1} - ${member.memPhones[1].memPhone2} - ${member.memPhones[1].memPhone3} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	AGE : ${member.memAge} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	ADULT : ${member.memAdult} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	GENDER : ${member.memGender} &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+	FAVORITE SPORT :
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;c:forEach&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;var=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fSport&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;items=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${member.memFSports}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		${fSport},
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/c:forEach&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;br&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;P&amp;gt;&lt;/span&gt;  The time on the server is ${serverTime}. &lt;span class=&quot;nt&quot;&gt;&amp;lt;/P&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/lec19/resources/html/memJoin.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; Go MemberJoin &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;Spring command Object를 랜더링 하기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;jstl&lt;/code&gt; 태그를 사용한다.&lt;/li&gt;
+  &lt;li&gt;객체명은 default로 member 이고 변경이 필요할시 &lt;code class=&quot;highlighter-rouge&quot;&gt;ModelAttribute&lt;/code&gt; 어노테이션을 사용한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ModelAttribute&lt;/code&gt; 어노테이션이 붙여진 메서드의 리턴값인 serverTime 변수가 특별한 선언 없이 사용되고 있음을 확인할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         <pubDate>Sun, 02 Dec 2018 23:18:25 +0900</pubDate>
         <link>http://localhost:4000/spring/2018/12/02/Spring-Web-MVC.html</link>
